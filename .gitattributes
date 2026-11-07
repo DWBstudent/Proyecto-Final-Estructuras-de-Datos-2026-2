@@ -1,0 +1,10 @@
+# Guarda todos los archivos de texto con fin de línea LF dentro del repo,
+# sin importar si quien hace commit usa Windows, Mac o Linux.
+* text=auto eol=lf
+
+# Archivos binarios: Git no los toca.
+*.png binary
+*.jpg binary
+*.mp3 binary
+*.wav binary
+*.jar binary

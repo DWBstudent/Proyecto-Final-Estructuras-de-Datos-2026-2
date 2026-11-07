@@ -1,0 +1,11 @@
+id;nombre;tipo;ataque;defensa;contrasena;imagen;descripcion
+1;Dragón de Ceniza;DRAGON;2100;1500;48201937;;Un dragón que nace del humo de los volcanes apagados.
+2;Caballero del Alba;GUERRERO;1700;1200;73019462;;Juró proteger el reino hasta que salga el último sol.
+3;Hechicera de Cristal;LANZADOR_DE_CONJUROS;1400;1900;15837204;;Sus escudos de cristal detienen hasta el fuego.
+4;Lobo de Niebla;BESTIA;1300;900;62940518;;Caza solo en las noches sin luna.
+5;Sombra Errante;DEMONIO;1600;1100;30475816;;Nadie ha visto su rostro, solo su sombra.
+6;Autómata de Bronce;MAQUINA;1500;1800;84162039;;Una máquina antigua que todavía obedece órdenes.
+7;Serpiente de Arrecife;AGUA;1200;1000;27593641;;Se esconde entre los corales y ataca sin aviso.
+8;Guardián del Musgo;PLANTA;800;2000;59308172;;Un árbol viejo que protege el bosque.
+9;Wyvern Joven;DRAGON;1100;700;91746250;;Todavía aprende a volar, pero ya muerde.
+10;Escudero Novato;GUERRERO;600;800;46081397;;Lleva la espada de su maestro y mucho entusiasmo.
