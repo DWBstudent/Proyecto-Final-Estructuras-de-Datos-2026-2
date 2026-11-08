@@ -1,11 +1,101 @@
 id;nombre;tipo;ataque;defensa;contrasena;imagen;descripcion
-1;Dragón de Ceniza;DRAGON;2100;1500;48201937;;Un dragón que nace del humo de los volcanes apagados.
-2;Caballero del Alba;GUERRERO;1700;1200;73019462;;Juró proteger el reino hasta que salga el último sol.
-3;Hechicera de Cristal;LANZADOR_DE_CONJUROS;1400;1900;15837204;;Sus escudos de cristal detienen hasta el fuego.
-4;Lobo de Niebla;BESTIA;1300;900;62940518;;Caza solo en las noches sin luna.
-5;Sombra Errante;DEMONIO;1600;1100;30475816;;Nadie ha visto su rostro, solo su sombra.
-6;Autómata de Bronce;MAQUINA;1500;1800;84162039;;Una máquina antigua que todavía obedece órdenes.
-7;Serpiente de Arrecife;AGUA;1200;1000;27593641;;Se esconde entre los corales y ataca sin aviso.
-8;Guardián del Musgo;PLANTA;800;2000;59308172;;Un árbol viejo que protege el bosque.
-9;Wyvern Joven;DRAGON;1100;700;91746250;;Todavía aprende a volar, pero ya muerde.
-10;Escudero Novato;GUERRERO;600;800;46081397;;Lleva la espada de su maestro y mucho entusiasmo.
+1;Cría de Dragón;DRAGON;450;650;68695681;;Escupe fuego cuando se siente amenazado.
+2;Escudero Novato;GUERRERO;450;700;83414184;;Juró proteger el reino con su espada.
+3;Aprendiz de Magia;LANZADOR_DE_CONJUROS;1150;1000;73526008;;Conoce hechizos que nadie más recuerda.
+4;Ardilla Feroz;BESTIA;1050;1000;00340220;;Caza en silencio y ataca sin aviso.
+5;Diablillo Burlón;DEMONIO;400;300;13160265;;Nadie ha visto su rostro, solo su sombra.
+6;Engranaje Vivo;MAQUINA;1000;350;91963043;;Una máquina antigua que todavía obedece órdenes.
+7;Pez Lámpara;AGUA;1050;650;33757517;;Se esconde entre los corales y ataca sin aviso.
+8;Brote Curioso;PLANTA;850;1100;68932553;;Protege el bosque desde hace siglos.
+9;Wyvern Joven;DRAGON;400;550;72217824;;Sus escamas resisten casi cualquier golpe.
+10;Recluta del Valle;GUERRERO;750;700;86542925;;Nunca retrocede, aunque el rival sea más fuerte.
+11;Monje de las Velas;LANZADOR_DE_CONJUROS;1200;600;95410327;;Sus palabras pueden detener una tormenta.
+12;Jabalí Joven;BESTIA;850;700;12171427;;Defiende su territorio con garras y colmillos.
+13;Gárgola de Piedra;DEMONIO;900;950;15629378;;Se alimenta del miedo de sus enemigos.
+14;Robot Barrendero;MAQUINA;950;1350;80552815;;Sus engranajes nunca se detienen.
+15;Cangrejo Ermitaño;AGUA;1050;950;34714533;;Controla las corrientes a su antojo.
+16;Hongo Saltarín;PLANTA;950;1600;64315788;;Sus raíces atrapan a quien se acerca demasiado.
+17;Lagartija Alada;DRAGON;1100;950;77244482;;Vuela sobre las montañas buscando rivales dignos.
+18;Arquero del Bosque;GUERRERO;650;500;94578218;;Entrena desde el amanecer hasta la noche.
+19;Bruja del Pantano;LANZADOR_DE_CONJUROS;1100;450;57634371;;Estudia libros prohibidos a la luz de una vela.
+20;Lobo de Niebla;BESTIA;1050;400;30726097;;Su rugido se escucha a kilómetros.
+21;Sombra Errante;DEMONIO;450;850;95901695;;Aparece cuando la luna se oculta.
+22;Torreta Oxidada;MAQUINA;1150;800;89892850;;Fue construida para una guerra olvidada.
+23;Medusa Brillante;AGUA;750;1200;67363825;;Vive en lo más profundo, donde no llega la luz.
+24;Enredadera Traviesa;PLANTA;1050;1000;39510228;;Florece incluso en el invierno más duro.
+25;Dragón de Barro;DRAGON;700;200;87998874;;Escupe fuego cuando se siente amenazado.
+26;Lancero de Bronce;GUERRERO;1000;1200;48309773;;Juró proteger el reino con su espada.
+27;Hechicera de Cristal;LANZADOR_DE_CONJUROS;600;750;62633522;;Conoce hechizos que nadie más recuerda.
+28;Zorro de Fuego;BESTIA;1100;1000;74871749;;Caza en silencio y ataca sin aviso.
+29;Espectro del Pozo;DEMONIO;350;550;13203533;;Nadie ha visto su rostro, solo su sombra.
+30;Autómata de Bronce;MAQUINA;1000;1100;24568398;;Una máquina antigua que todavía obedece órdenes.
+31;Serpiente de Arrecife;AGUA;950;1150;87046671;;Se esconde entre los corales y ataca sin aviso.
+32;Guardián del Musgo;PLANTA;700;1150;26116972;;Protege el bosque desde hace siglos.
+33;Dragón de Ceniza;DRAGON;950;400;01883416;;Sus escamas resisten casi cualquier golpe.
+34;Caballero del Alba;GUERRERO;400;250;73362139;;Nunca retrocede, aunque el rival sea más fuerte.
+35;Mago de la Torre;LANZADOR_DE_CONJUROS;400;550;83359230;;Sus palabras pueden detener una tormenta.
+36;Oso Pardo del Monte;BESTIA;350;1100;89721481;;Defiende su territorio con garras y colmillos.
+37;Calavera Danzante;DEMONIO;850;300;89198595;;Se alimenta del miedo de sus enemigos.
+38;Dron Vigía;MAQUINA;1200;1450;66033634;;Sus engranajes nunca se detienen.
+39;Tritón Guardián;AGUA;500;950;78911235;;Controla las corrientes a su antojo.
+40;Flor Carnívora;PLANTA;500;1150;56073339;;Sus raíces atrapan a quien se acerca demasiado.
+41;Draco Errante;DRAGON;1450;1200;78655506;;Vuela sobre las montañas buscando rivales dignos.
+42;Espadachín Errante;GUERRERO;1650;1800;19936204;;Entrena desde el amanecer hasta la noche.
+43;Vidente Ciega;LANZADOR_DE_CONJUROS;2000;1400;14245056;;Estudia libros prohibidos a la luz de una vela.
+44;Pantera de Sombras;BESTIA;1800;900;46575946;;Su rugido se escucha a kilómetros.
+45;Súcubo del Humo;DEMONIO;1750;750;63890916;;Aparece cuando la luna se oculta.
+46;Gólem de Vapor;MAQUINA;1700;1800;16290387;;Fue construida para una guerra olvidada.
+47;Sirena del Faro;AGUA;1950;1800;22915476;;Vive en lo más profundo, donde no llega la luz.
+48;Espantapájaros de Trigo;PLANTA;1400;2050;83663689;;Florece incluso en el invierno más duro.
+49;Dragón de Escarcha;DRAGON;1700;1550;91066500;;Escupe fuego cuando se siente amenazado.
+50;Guardia Real;GUERRERO;1300;1350;86869801;;Juró proteger el reino con su espada.
+51;Alquimista Loco;LANZADOR_DE_CONJUROS;1450;1300;06467611;;Conoce hechizos que nadie más recuerda.
+52;Toro de Granito;BESTIA;1900;1250;91084790;;Caza en silencio y ataca sin aviso.
+53;Demonio de las Cadenas;DEMONIO;1200;1150;29356575;;Nadie ha visto su rostro, solo su sombra.
+54;Tanque Escarabajo;MAQUINA;2000;1350;24965198;;Una máquina antigua que todavía obedece órdenes.
+55;Tortuga Coral;AGUA;1800;1450;55577787;;Se esconde entre los corales y ataca sin aviso.
+56;Druida del Roble;PLANTA;1300;1950;46179753;;Protege el bosque desde hace siglos.
+57;Wyvern de Tormenta;DRAGON;1450;1250;55799328;;Sus escamas resisten casi cualquier golpe.
+58;Caballero de Hierro;GUERRERO;1650;1550;69703978;;Nunca retrocede, aunque el rival sea más fuerte.
+59;Sacerdotisa Lunar;LANZADOR_DE_CONJUROS;1950;1600;70423899;;Sus palabras pueden detener una tormenta.
+60;Grifo Cazador;BESTIA;1600;1250;31049233;;Defiende su territorio con garras y colmillos.
+61;Caballero Sin Rostro;DEMONIO;1200;1150;86661596;;Se alimenta del miedo de sus enemigos.
+62;Centinela de Acero;MAQUINA;1700;2100;89979425;;Sus engranajes nunca se detienen.
+63;Tiburón de Fondo;AGUA;1450;1050;21039853;;Controla las corrientes a su antojo.
+64;Rosa de Espinas;PLANTA;1750;1500;96101576;;Sus raíces atrapan a quien se acerca demasiado.
+65;Dragón de Obsidiana;DRAGON;1600;1200;75541950;;Vuela sobre las montañas buscando rivales dignos.
+66;Capitana de la Marea;GUERRERO;1600;1100;35394922;;Entrena desde el amanecer hasta la noche.
+67;Archimago del Viento;LANZADOR_DE_CONJUROS;1350;1550;91878382;;Estudia libros prohibidos a la luz de una vela.
+68;Lince de Cristal;BESTIA;1250;1600;24896742;;Su rugido se escucha a kilómetros.
+69;Señor de las Ánimas;DEMONIO;1350;1450;78934594;;Aparece cuando la luna se oculta.
+70;Coloso Mecánico;MAQUINA;1300;2150;21661517;;Fue construida para una guerra olvidada.
+71;Kraken Joven;AGUA;1600;1250;55249698;;Vive en lo más profundo, donde no llega la luz.
+72;Ent del Bosque Viejo;PLANTA;1600;2500;07692234;;Florece incluso en el invierno más duro.
+73;Dragón Carmesí;DRAGON;1350;1000;16511507;;Escupe fuego cuando se siente amenazado.
+74;Paladín de Plata;GUERRERO;1350;1500;61209284;;Juró proteger el reino con su espada.
+75;Hechicero de las Runas;LANZADOR_DE_CONJUROS;1250;1650;28942204;;Conoce hechizos que nadie más recuerda.
+76;León de Melena Dorada;BESTIA;2700;2600;16030999;;Caza en silencio y ataca sin aviso.
+77;Demonio de Azufre;DEMONIO;2550;2350;33766169;;Nadie ha visto su rostro, solo su sombra.
+78;Androide de Combate;MAQUINA;2600;3200;47824180;;Una máquina antigua que todavía obedece órdenes.
+79;Leviatán de Espuma;AGUA;2050;2800;37773020;;Se esconde entre los corales y ataca sin aviso.
+80;Dríada de Primavera;PLANTA;2500;3100;16416872;;Protege el bosque desde hace siglos.
+81;Dragón del Eclipse;DRAGON;2450;1950;02720605;;Sus escamas resisten casi cualquier golpe.
+82;General de la Frontera;GUERRERO;2500;2200;96862011;;Nunca retrocede, aunque el rival sea más fuerte.
+83;Maga del Vacío;LANZADOR_DE_CONJUROS;2150;2300;15875669;;Sus palabras pueden detener una tormenta.
+84;Mamut de Hielo;BESTIA;2050;1850;80121624;;Defiende su territorio con garras y colmillos.
+85;Archidemonio Velado;DEMONIO;2450;1550;16951405;;Se alimenta del miedo de sus enemigos.
+86;Fortaleza Andante;MAQUINA;2550;2800;32119104;;Sus engranajes nunca se detienen.
+87;Dama de las Mareas;AGUA;2650;2400;24624539;;Controla las corrientes a su antojo.
+88;Árbol de las Mil Raíces;PLANTA;2000;3450;19821727;;Sus raíces atrapan a quien se acerca demasiado.
+89;Dragón Ancestral;DRAGON;2350;1300;72631920;;Vuela sobre las montañas buscando rivales dignos.
+90;Campeón del Coliseo;GUERRERO;2750;2250;42244317;;Entrena desde el amanecer hasta la noche.
+91;Sabio de las Mil Lenguas;LANZADOR_DE_CONJUROS;2200;2300;74220003;;Estudia libros prohibidos a la luz de una vela.
+92;Quimera Salvaje;BESTIA;2050;2600;45729726;;Su rugido se escucha a kilómetros.
+93;Bestia del Abismo;DEMONIO;2800;1650;01531334;;Aparece cuando la luna se oculta.
+94;Titán de Cromo;MAQUINA;2350;2550;29774682;;Fue construida para una guerra olvidada.
+95;Hidra Abisal;AGUA;2800;2350;53562849;;Vive en lo más profundo, donde no llega la luz.
+96;Madre Selva;PLANTA;3350;3500;31207329;;Florece incluso en el invierno más duro.
+97;Dragón Rey del Alba;DRAGON;3200;2500;26974998;;Escupe fuego cuando se siente amenazado.
+98;Rey Guerrero Eterno;GUERRERO;3050;2800;61412691;;Juró proteger el reino con su espada.
+99;Oráculo del Fin;LANZADOR_DE_CONJUROS;3200;3250;90382673;;Conoce hechizos que nadie más recuerda.
+100;Bestia Celestial;BESTIA;3250;2200;84290960;;Caza en silencio y ataca sin aviso.
