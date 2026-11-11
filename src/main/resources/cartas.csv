@@ -1,101 +1,101 @@
 id;nombre;tipo;ataque;defensa;contrasena;imagen;descripcion
-1;Cría de Dragón;DRAGON;450;650;68695681;;Escupe fuego cuando se siente amenazado.
-2;Escudero Novato;GUERRERO;450;700;83414184;;Juró proteger el reino con su espada.
-3;Aprendiz de Magia;LANZADOR_DE_CONJUROS;1150;1000;73526008;;Conoce hechizos que nadie más recuerda.
-4;Ardilla Feroz;BESTIA;1050;1000;00340220;;Caza en silencio y ataca sin aviso.
-5;Diablillo Burlón;DEMONIO;400;300;13160265;;Nadie ha visto su rostro, solo su sombra.
-6;Engranaje Vivo;MAQUINA;1000;350;91963043;;Una máquina antigua que todavía obedece órdenes.
-7;Pez Lámpara;AGUA;1050;650;33757517;;Se esconde entre los corales y ataca sin aviso.
-8;Brote Curioso;PLANTA;850;1100;68932553;;Protege el bosque desde hace siglos.
-9;Wyvern Joven;DRAGON;400;550;72217824;;Sus escamas resisten casi cualquier golpe.
-10;Recluta del Valle;GUERRERO;750;700;86542925;;Nunca retrocede, aunque el rival sea más fuerte.
-11;Monje de las Velas;LANZADOR_DE_CONJUROS;1200;600;95410327;;Sus palabras pueden detener una tormenta.
-12;Jabalí Joven;BESTIA;850;700;12171427;;Defiende su territorio con garras y colmillos.
-13;Gárgola de Piedra;DEMONIO;900;950;15629378;;Se alimenta del miedo de sus enemigos.
-14;Robot Barrendero;MAQUINA;950;1350;80552815;;Sus engranajes nunca se detienen.
-15;Cangrejo Ermitaño;AGUA;1050;950;34714533;;Controla las corrientes a su antojo.
-16;Hongo Saltarín;PLANTA;950;1600;64315788;;Sus raíces atrapan a quien se acerca demasiado.
-17;Lagartija Alada;DRAGON;1100;950;77244482;;Vuela sobre las montañas buscando rivales dignos.
-18;Arquero del Bosque;GUERRERO;650;500;94578218;;Entrena desde el amanecer hasta la noche.
-19;Bruja del Pantano;LANZADOR_DE_CONJUROS;1100;450;57634371;;Estudia libros prohibidos a la luz de una vela.
-20;Lobo de Niebla;BESTIA;1050;400;30726097;;Su rugido se escucha a kilómetros.
-21;Sombra Errante;DEMONIO;450;850;95901695;;Aparece cuando la luna se oculta.
-22;Torreta Oxidada;MAQUINA;1150;800;89892850;;Fue construida para una guerra olvidada.
-23;Medusa Brillante;AGUA;750;1200;67363825;;Vive en lo más profundo, donde no llega la luz.
-24;Enredadera Traviesa;PLANTA;1050;1000;39510228;;Florece incluso en el invierno más duro.
-25;Dragón de Barro;DRAGON;700;200;87998874;;Escupe fuego cuando se siente amenazado.
-26;Lancero de Bronce;GUERRERO;1000;1200;48309773;;Juró proteger el reino con su espada.
-27;Hechicera de Cristal;LANZADOR_DE_CONJUROS;600;750;62633522;;Conoce hechizos que nadie más recuerda.
-28;Zorro de Fuego;BESTIA;1100;1000;74871749;;Caza en silencio y ataca sin aviso.
-29;Espectro del Pozo;DEMONIO;350;550;13203533;;Nadie ha visto su rostro, solo su sombra.
-30;Autómata de Bronce;MAQUINA;1000;1100;24568398;;Una máquina antigua que todavía obedece órdenes.
-31;Serpiente de Arrecife;AGUA;950;1150;87046671;;Se esconde entre los corales y ataca sin aviso.
-32;Guardián del Musgo;PLANTA;700;1150;26116972;;Protege el bosque desde hace siglos.
-33;Dragón de Ceniza;DRAGON;950;400;01883416;;Sus escamas resisten casi cualquier golpe.
-34;Caballero del Alba;GUERRERO;400;250;73362139;;Nunca retrocede, aunque el rival sea más fuerte.
-35;Mago de la Torre;LANZADOR_DE_CONJUROS;400;550;83359230;;Sus palabras pueden detener una tormenta.
-36;Oso Pardo del Monte;BESTIA;350;1100;89721481;;Defiende su territorio con garras y colmillos.
-37;Calavera Danzante;DEMONIO;850;300;89198595;;Se alimenta del miedo de sus enemigos.
-38;Dron Vigía;MAQUINA;1200;1450;66033634;;Sus engranajes nunca se detienen.
-39;Tritón Guardián;AGUA;500;950;78911235;;Controla las corrientes a su antojo.
-40;Flor Carnívora;PLANTA;500;1150;56073339;;Sus raíces atrapan a quien se acerca demasiado.
-41;Draco Errante;DRAGON;1450;1200;78655506;;Vuela sobre las montañas buscando rivales dignos.
-42;Espadachín Errante;GUERRERO;1650;1800;19936204;;Entrena desde el amanecer hasta la noche.
-43;Vidente Ciega;LANZADOR_DE_CONJUROS;2000;1400;14245056;;Estudia libros prohibidos a la luz de una vela.
-44;Pantera de Sombras;BESTIA;1800;900;46575946;;Su rugido se escucha a kilómetros.
-45;Súcubo del Humo;DEMONIO;1750;750;63890916;;Aparece cuando la luna se oculta.
-46;Gólem de Vapor;MAQUINA;1700;1800;16290387;;Fue construida para una guerra olvidada.
-47;Sirena del Faro;AGUA;1950;1800;22915476;;Vive en lo más profundo, donde no llega la luz.
-48;Espantapájaros de Trigo;PLANTA;1400;2050;83663689;;Florece incluso en el invierno más duro.
-49;Dragón de Escarcha;DRAGON;1700;1550;91066500;;Escupe fuego cuando se siente amenazado.
-50;Guardia Real;GUERRERO;1300;1350;86869801;;Juró proteger el reino con su espada.
-51;Alquimista Loco;LANZADOR_DE_CONJUROS;1450;1300;06467611;;Conoce hechizos que nadie más recuerda.
-52;Toro de Granito;BESTIA;1900;1250;91084790;;Caza en silencio y ataca sin aviso.
-53;Demonio de las Cadenas;DEMONIO;1200;1150;29356575;;Nadie ha visto su rostro, solo su sombra.
-54;Tanque Escarabajo;MAQUINA;2000;1350;24965198;;Una máquina antigua que todavía obedece órdenes.
-55;Tortuga Coral;AGUA;1800;1450;55577787;;Se esconde entre los corales y ataca sin aviso.
-56;Druida del Roble;PLANTA;1300;1950;46179753;;Protege el bosque desde hace siglos.
-57;Wyvern de Tormenta;DRAGON;1450;1250;55799328;;Sus escamas resisten casi cualquier golpe.
-58;Caballero de Hierro;GUERRERO;1650;1550;69703978;;Nunca retrocede, aunque el rival sea más fuerte.
-59;Sacerdotisa Lunar;LANZADOR_DE_CONJUROS;1950;1600;70423899;;Sus palabras pueden detener una tormenta.
-60;Grifo Cazador;BESTIA;1600;1250;31049233;;Defiende su territorio con garras y colmillos.
-61;Caballero Sin Rostro;DEMONIO;1200;1150;86661596;;Se alimenta del miedo de sus enemigos.
-62;Centinela de Acero;MAQUINA;1700;2100;89979425;;Sus engranajes nunca se detienen.
-63;Tiburón de Fondo;AGUA;1450;1050;21039853;;Controla las corrientes a su antojo.
-64;Rosa de Espinas;PLANTA;1750;1500;96101576;;Sus raíces atrapan a quien se acerca demasiado.
-65;Dragón de Obsidiana;DRAGON;1600;1200;75541950;;Vuela sobre las montañas buscando rivales dignos.
-66;Capitana de la Marea;GUERRERO;1600;1100;35394922;;Entrena desde el amanecer hasta la noche.
-67;Archimago del Viento;LANZADOR_DE_CONJUROS;1350;1550;91878382;;Estudia libros prohibidos a la luz de una vela.
-68;Lince de Cristal;BESTIA;1250;1600;24896742;;Su rugido se escucha a kilómetros.
-69;Señor de las Ánimas;DEMONIO;1350;1450;78934594;;Aparece cuando la luna se oculta.
-70;Coloso Mecánico;MAQUINA;1300;2150;21661517;;Fue construida para una guerra olvidada.
-71;Kraken Joven;AGUA;1600;1250;55249698;;Vive en lo más profundo, donde no llega la luz.
-72;Ent del Bosque Viejo;PLANTA;1600;2500;07692234;;Florece incluso en el invierno más duro.
-73;Dragón Carmesí;DRAGON;1350;1000;16511507;;Escupe fuego cuando se siente amenazado.
-74;Paladín de Plata;GUERRERO;1350;1500;61209284;;Juró proteger el reino con su espada.
-75;Hechicero de las Runas;LANZADOR_DE_CONJUROS;1250;1650;28942204;;Conoce hechizos que nadie más recuerda.
-76;León de Melena Dorada;BESTIA;2700;2600;16030999;;Caza en silencio y ataca sin aviso.
-77;Demonio de Azufre;DEMONIO;2550;2350;33766169;;Nadie ha visto su rostro, solo su sombra.
-78;Androide de Combate;MAQUINA;2600;3200;47824180;;Una máquina antigua que todavía obedece órdenes.
-79;Leviatán de Espuma;AGUA;2050;2800;37773020;;Se esconde entre los corales y ataca sin aviso.
-80;Dríada de Primavera;PLANTA;2500;3100;16416872;;Protege el bosque desde hace siglos.
-81;Dragón del Eclipse;DRAGON;2450;1950;02720605;;Sus escamas resisten casi cualquier golpe.
-82;General de la Frontera;GUERRERO;2500;2200;96862011;;Nunca retrocede, aunque el rival sea más fuerte.
-83;Maga del Vacío;LANZADOR_DE_CONJUROS;2150;2300;15875669;;Sus palabras pueden detener una tormenta.
-84;Mamut de Hielo;BESTIA;2050;1850;80121624;;Defiende su territorio con garras y colmillos.
-85;Archidemonio Velado;DEMONIO;2450;1550;16951405;;Se alimenta del miedo de sus enemigos.
-86;Fortaleza Andante;MAQUINA;2550;2800;32119104;;Sus engranajes nunca se detienen.
-87;Dama de las Mareas;AGUA;2650;2400;24624539;;Controla las corrientes a su antojo.
-88;Árbol de las Mil Raíces;PLANTA;2000;3450;19821727;;Sus raíces atrapan a quien se acerca demasiado.
-89;Dragón Ancestral;DRAGON;2350;1300;72631920;;Vuela sobre las montañas buscando rivales dignos.
-90;Campeón del Coliseo;GUERRERO;2750;2250;42244317;;Entrena desde el amanecer hasta la noche.
-91;Sabio de las Mil Lenguas;LANZADOR_DE_CONJUROS;2200;2300;74220003;;Estudia libros prohibidos a la luz de una vela.
-92;Quimera Salvaje;BESTIA;2050;2600;45729726;;Su rugido se escucha a kilómetros.
-93;Bestia del Abismo;DEMONIO;2800;1650;01531334;;Aparece cuando la luna se oculta.
-94;Titán de Cromo;MAQUINA;2350;2550;29774682;;Fue construida para una guerra olvidada.
-95;Hidra Abisal;AGUA;2800;2350;53562849;;Vive en lo más profundo, donde no llega la luz.
-96;Madre Selva;PLANTA;3350;3500;31207329;;Florece incluso en el invierno más duro.
-97;Dragón Rey del Alba;DRAGON;3200;2500;26974998;;Escupe fuego cuando se siente amenazado.
-98;Rey Guerrero Eterno;GUERRERO;3050;2800;61412691;;Juró proteger el reino con su espada.
-99;Oráculo del Fin;LANZADOR_DE_CONJUROS;3200;3250;90382673;;Conoce hechizos que nadie más recuerda.
-100;Bestia Celestial;BESTIA;3250;2200;84290960;;Caza en silencio y ataca sin aviso.
+1;Exodia the Forbidden One;LANZADOR_DE_CONJUROS;1000;1000;33396948;imagenes/1.jpg;"If you have ""Right Leg of the Forbidden One"", ""Left Leg of the Forbidden One"", ""Right Arm of the Forbidden One"" and ""Left Arm of the Forbidden One"" in addition to this card in your hand, you win the Duel."
+2;Summoned Skull;DEMONIO;2500;1200;70781052;imagenes/2.jpg;"A fiend with dark powers for confusing the enemy. Among the Fiend-Type monsters, this monster boasts considerable force. (This card is always treated as an ""Archfiend"" card.)"
+3;Dark Magician Girl;LANZADOR_DE_CONJUROS;2000;1700;38033121;imagenes/3.jpg;"Gains 300 ATK for every ""Dark Magician"" or ""Magician of Black Chaos"" in the GY."
+4;Slifer the Sky Dragon;BESTIA_DIVINA;0;0;10000020;imagenes/4.jpg;Requires 3 Tributes to Normal Summon (cannot be Normal Set). This card's Normal Summon cannot be negated. When Normal Summoned, cards and effects cannot be activated. Once per turn, during the End Phase, if this card was Special Summoned: Send it to the GY. Gains 1000 ATK/DEF for each card in your hand. If a monster(s) is Normal or Special Summoned to your opponent's field in Attack Position: That monster(s) loses 2000 ATK, then if its ATK has been reduced to 0 as a result, destroy it.
+5;Obelisk the Tormentor;BESTIA_DIVINA;4000;4000;10000000;imagenes/5.jpg;Requires 3 Tributes to Normal Summon (cannot be Normal Set). This card's Normal Summon cannot be negated. When Normal Summoned, cards and effects cannot be activated. Neither player can target this card with card effects. Once per turn, during the End Phase, if this card was Special Summoned: Send it to the GY. You can Tribute 2 monsters, destroy all monsters your opponent controls. This card cannot declare an attack the turn this effect is activated.
+6;The Winged Dragon of Ra;BESTIA_DIVINA;0;0;10000010;imagenes/6.jpg;Cannot be Special Summoned. Requires 3 Tributes to Normal Summon (cannot be Normal Set). This card's Normal Summon cannot be negated. When Normal Summoned, other cards and effects cannot be activated. When this card is Normal Summoned: You can pay LP so that you only have 100 left, this card gains ATK/DEF equal to the amount of LP paid. You can pay 1000 LP, then target 1 monster on the field, destroy that target.
+7;Kuriboh;DEMONIO;300;200;40640057;imagenes/7.jpg;During damage calculation, if your opponent's monster attacks (Quick Effect): You can discard this card, you take no battle damage from that battle.
+8;Celtic Guardian;GUERRERO;1400;1200;91152256;imagenes/8.jpg;An elf who learned to wield a sword, he baffles enemies with lightning-swift attacks.
+9;Gaia The Fierce Knight;GUERRERO;2300;2100;06368038;imagenes/9.jpg;''A knight whose horse travels faster than the wind. His battle-charge is a force to be reckoned with.''
+10;Curse of Dragon;DRAGON;2000;1500;28279543;imagenes/10.jpg;A wicked dragon that taps into dark forces to execute a powerful attack.
+11;Buster Blader;GUERRERO;2600;2300;78193831;imagenes/11.jpg;Gains 500 ATK for each Dragon monster your opponent controls or is in their GY.
+12;Black Luster Soldier;GUERRERO;3000;2500;05405694;imagenes/12.jpg;"You can Ritual Summon this card with ""Black Luster Ritual""."
+13;Jinzo;MAQUINA;2400;1500;77585513;imagenes/13.jpg;Trap Cards, and their effects on the field, cannot be activated. Negate all Trap effects on the field.
+14;Gemini Elf;LANZADOR_DE_CONJUROS;1900;900;69140098;imagenes/14.jpg;Elf twins that alternate their attacks.
+15;Mystical Elf;LANZADOR_DE_CONJUROS;800;2000;15025844;imagenes/15.jpg;A delicate elf that lacks offense, but has a terrific defense backed by mystical power.
+16;Feral Imp;DEMONIO;1300;1400;41392891;imagenes/16.jpg;A playful little fiend that lurks in the dark, waiting to attack an unwary enemy.
+17;Time Wizard;LANZADOR_DE_CONJUROS;500;400;71625222;imagenes/17.jpg;Once per turn: You can toss a coin and call it. If you call it right, destroy all monsters your opponent controls. If you call it wrong, destroy as many monsters you control as possible, and if you do, take damage equal to half the total ATK those destroyed monsters had while face-up on the field.
+18;Harpie Lady;BESTIA_ALADA;1300;1400;76812113;imagenes/18.jpg;This human-shaped animal with wings is beautiful to watch but deadly in battle.
+19;Harpie's Pet Dragon;DRAGON;2000;2500;52040216;imagenes/19.jpg;"Gains 300 ATK/DEF for each ""Harpie Lady"" on the field."
+20;Flame Swordsman;GUERRERO;1800;1600;45231177;imagenes/20.jpg;"""Flame Manipulator"" + ""Masaki the Legendary Swordsman"""
+21;Gaia the Dragon Champion;DRAGON;2600;2100;66889139;imagenes/21.jpg;"""Gaia The Fierce Knight"" + ""Curse of Dragon"""
+22;Dark Blade;GUERRERO;1800;1500;11321183;imagenes/22.jpg;They say he is a dragon-manipulating warrior from the dark world. His attack is tremendous, using his great swords with vicious power.
+23;Blue-Eyes Ultimate Dragon;DRAGON;4500;3800;23995346;imagenes/23.jpg;"""Blue-Eyes White Dragon"" + ""Blue-Eyes White Dragon"" + ""Blue-Eyes White Dragon"""
+24;Thousand Dragon;DRAGON;2400;2000;41462083;imagenes/24.jpg;"""Time Wizard"" + ""Baby Dragon"""
+25;Twin-Headed Thunder Dragon;TRUENO;2800;2100;54752875;imagenes/25.jpg;"""Thunder Dragon"" + ""Thunder Dragon"""
+26;Dark Magician of Chaos;LANZADOR_DE_CONJUROS;2800;2600;40737112;imagenes/26.jpg;"During the End Phase, if this card was Normal or Special Summoned this turn: You can target 1 Spell in your GY, add it to your hand. You can only use this effect of ""Dark Magician of Chaos"" once per turn. If this card destroys an opponent's monster by battle, after damage calculation: Banish that opponent's monster. If this face-up card would leave the field, banish it instead."
+27;Magician of Black Chaos;LANZADOR_DE_CONJUROS;2800;2600;30208479;imagenes/27.jpg;"You can Ritual Summon this card with ""Black Magic Ritual""."
+28;Chaos Emperor Dragon - Envoy of the End;DRAGON;3000;2500;82301904;imagenes/28.jpg;Cannot be Normal Summoned/Set. Must be Special Summoned (from your hand) by banishing 1 LIGHT and 1 DARK monster from your GY. Once per turn: You can pay 1000 LP, send as many cards in both players' hands and on the field as possible to the GY, then inflict 300 damage to your opponent for each card sent to the opponent's GY by this effect. You cannot activate other cards or effects during the turn you activate this card's effect.
+29;Black Luster Soldier - Envoy of the Beginning;GUERRERO;3000;2500;72989439;imagenes/29.jpg;Cannot be Normal Summoned/Set. Must first be Special Summoned (from your hand) by banishing 1 LIGHT and 1 DARK monster from your GY. Once per turn, you can activate 1 of these effects. ● Target 1 monster on the field, banish it. This card cannot attack the turn this effect is activated. ● If this attacking card destroys an opponent's monster by battle: It can make a second attack in a row.
+30;Sangan;DEMONIO;1000;600;26202165;imagenes/30.jpg;"If this card is sent from the field to the GY: Add 1 monster with 1500 or less ATK from your Deck to your hand, but you cannot activate cards, or the effects of cards, with that name for the rest of this turn. You can only use this effect of ""Sangan"" once per turn."
+31;Witch of the Black Forest;LANZADOR_DE_CONJUROS;1100;1200;78010363;imagenes/31.jpg;"If this card is sent from the field to the GY: Add 1 monster with 1500 or less DEF from your Deck to your hand, but you cannot activate cards, or the effects of cards, with that name for the rest of this turn. You can only use this effect of ""Witch of the Black Forest"" once per turn."
+32;Mystic Tomato;PLANTA;1400;1100;83011278;imagenes/32.jpg;When this card is destroyed by battle and sent to the GY: You can Special Summon 1 DARK monster with 1500 or less ATK from your Deck, in face-up Attack Position.
+33;Man-Eater Bug;INSECTO;450;600;54652250;imagenes/33.jpg;FLIP: Target 1 monster on the field, destroy it.
+34;Marauding Captain;GUERRERO;1200;400;02460565;imagenes/34.jpg;Your opponent cannot target Warrior monsters for attacks, except this one. When this card is Normal Summoned: You can Special Summon 1 Level 4 or lower monster from your hand.
+35;Cyber Dragon;MAQUINA;2100;1600;70095154;imagenes/35.jpg;If only your opponent controls a monster, you can Special Summon this card (from your hand).
+36;Elemental HERO Avian;GUERRERO;1000;1000;21844576;imagenes/36.jpg;A winged Elemental HERO who wheels through the sky and manipulates the wind. His signature move, Featherbreak, gives villainy a blow from sky-high.
+37;Elemental HERO Sparkman;GUERRERO;1600;1400;20721928;imagenes/37.jpg;''An Elemental HERO and a warrior of light who proficiently wields many kinds of armaments. His Static Shockwave cuts off the path of villainy.''
+38;Elemental HERO Flame Wingman;GUERRERO;2100;1200;35809262;imagenes/38.jpg;"""Elemental HERO Avian"" + ""Elemental HERO Burstinatrix"" Must be Fusion Summoned and cannot be Special Summoned by other ways. When this card destroys a monster by battle and sends it to the Graveyard: Inflict damage to your opponent equal to the ATK of the destroyed monster in the Graveyard."
+39;Elemental HERO Neos;GUERRERO;2500;2000;89943723;imagenes/39.jpg;''A new Elemental HERO has arrived from Neo-Space! When he initiates a Contact Fusion with a Neo-Spacian his unknown powers are unleashed.''
+40;Elemental HERO Stratos;GUERRERO;1800;300;40044918;imagenes/40.jpg;"When this card is Normal or Special Summoned: You can activate 1 of these effects. ● Destroy Spells/Traps on the field, up to the number of ""HERO"" monsters you control, except this card. ● Add 1 ""HERO"" monster from your Deck to your hand."
+41;Elemental HERO Clayman;GUERRERO;800;2000;84327329;imagenes/41.jpg;An Elemental HERO with a clay body built-to-last. He'll preserve his Elemental HERO colleagues at any cost.
+42;Elemental HERO Bubbleman;GUERRERO;800;1200;79979666;imagenes/42.jpg;If this is the only card in your hand, you can Special Summon it (from your hand). When this card is Summoned: You can draw 2 cards. You must control no other cards and have no cards in your hand to activate and to resolve this effect.
+43;Elemental HERO Wildheart;GUERRERO;1500;1600;86188410;imagenes/43.jpg;This card is unaffected by Trap effects.
+44;Elemental HERO Burstinatrix;GUERRERO;1200;800;58932615;imagenes/44.jpg;A flame manipulator who was the first Elemental HERO woman. Her Burstfire burns away villainy.
+45;Stardust Dragon;DRAGON;2500;2000;44508094;imagenes/45.jpg;1 Tuner + 1+ non-Tuner monsters When a card or effect is activated that would destroy a card(s) on the field (Quick Effect): You can Tribute this card, negate the activation, and if you do, destroy it. During the End Phase, if this effect was activated this turn (and was not negated): You can Special Summon this card from your GY.
+46;Red Dragon Archfiend;DRAGON;3000;2000;70902743;imagenes/46.jpg;1 Tuner + 1 or more non-Tuner monsters After damage calculation, if this card attacks a Defense Position monster your opponent controls: Destroy all Defense Position monsters your opponent controls. During your End Phase: Destroy all other monsters you control that did not declare an attack this turn. This card must be face-up on the field to activate and to resolve this effect.
+47;Black Rose Dragon;DRAGON;2400;1800;73580471;imagenes/47.jpg;1 Tuner + 1+ non-Tuner monsters When this card is Synchro Summoned: You can destroy all cards on the field. Once per turn: You can banish 1 Plant monster from your GY, then target 1 Defense Position monster your opponent controls, change that target to face-up Attack Position, and if you do, its ATK becomes 0 until the end of this turn.
+48;Junk Synchron;GUERRERO;1300;500;63977008;imagenes/48.jpg;When this card is Normal Summoned: You can target 1 Level 2 or lower monster in your Graveyard, Special Summon that target in Defense Position, but it has its effects negated.
+49;Junk Warrior;GUERRERO;2300;1300;60800381;imagenes/49.jpg;"""Junk Synchron"" + 1 or more non-Tuner monsters If this card is Synchro Summoned: It gains ATK equal to the total ATK of all Level 2 or lower monsters you currently control."
+50;Ancient Gear Golem;MAQUINA;3000;3000;83104731;imagenes/50.jpg;Cannot be Special Summoned. If this card attacks, your opponent cannot activate any Spell/Trap Cards until the end of the Damage Step. If this card attacks a Defense Position monster, inflict piercing battle damage.
+51;Yata-Garasu;DEMONIO;200;100;03078576;imagenes/51.jpg;This card cannot be Special Summoned. This card returns to its owner's hand during the End Phase of the turn it is Normal Summoned or flipped face-up. When this card inflicts Battle Damage to your opponent, they skip their next Draw Phase.
+52;Spirit Reaper;ZOMBI;300;200;23205979;imagenes/52.jpg;Cannot be destroyed by battle. After resolving a card effect that targets this face-up card, destroy this card. When this card inflicts battle damage to your opponent by a direct attack: Discard 1 random card from their hand.
+53;Gilford the Lightning;GUERRERO;2800;1400;36354007;imagenes/53.jpg;You can Tribute 3 monsters to Tribute Summon (but not Set) this card. If Summoned this way: Destroy all monsters your opponent controls.
+54;Dark Necrofear;DEMONIO;2200;2800;31829185;imagenes/54.jpg;Cannot be Normal Summoned/Set. Must first be Special Summoned (from your hand) by banishing 3 Fiend monsters from your GY. During the End Phase, if this card is in your GY because it was destroyed in your Monster Zone by an opponent's card and sent there this turn: Target 1 face-up monster your opponent controls, equip this card to that target. While this card is equipped to a monster by this effect, take control of that monster.
+55;Manticore of Darkness;BESTIA_GUERRERA;2300;1000;77121851;imagenes/55.jpg;During the End Phase of the turn this card was sent to the Graveyard: You can send to the Graveyard 1 Beast, Beast-Warrior, or Winged Beast-Type monster from your hand or your side of the field, Special Summon this card from your Graveyard.
+56;Summoner Monk;LANZADOR_DE_CONJUROS;800;1600;00423585;imagenes/56.jpg;While this card is face-up on the field, it cannot be Tributed. If this card is Normal or Flip Summoned: Change this card to Defense Position. Once per turn: You can discard 1 Spell, Special Summon 1 Level 4 monster from your Deck, but that monster cannot attack this turn.
+57;Cyber-Stein;MAQUINA;700;500;69015963;imagenes/57.jpg;You can pay 5000 LP, Special Summon 1 Fusion Monster from your Extra Deck in Attack Position.
+58;Ryu-Kishin;DEMONIO;1000;500;15303296;imagenes/58.jpg;A very elusive creature that looks like a harmless statue until it attacks.
+59;Skull Servant;ZOMBI;300;200;32274490;imagenes/59.jpg;A skeletal ghost that isn't strong but can mean trouble in large numbers.
+60;Giant Orc;DEMONIO;2200;0;73698349;imagenes/60.jpg;If this card attacks, it is changed to Defense Position at the end of the Battle Phase. You cannot change this battle position until the end of your next turn.
+61;Mammoth Graveyard;DINOSAURIO;1200;800;40374923;imagenes/61.jpg;A mammoth that protects the graves of its pack and is absolutely merciless when facing grave-robbers.
+62;Silver Fang;BESTIA;1200;800;90357090;imagenes/62.jpg;A snow wolf that's beautiful to the eye, but absolutely vicious in battle.
+63;Basic Insect;INSECTO;500;700;89091579;imagenes/63.jpg;Usually found traveling in swarms, this creature's ideal environment is the forest.
+64;Petit Dragon;DRAGON;600;700;75356564;imagenes/64.jpg;A very small dragon known for its vicious attacks.
+65;Hinotama Soul;PIROTECNIA;600;500;96851799;imagenes/65.jpg;An intensely hot flame creature that rams anything standing in its way.
+66;Archfiend of Gilfer;DEMONIO;2200;2500;50287060;imagenes/66.jpg;When this card is sent to the Graveyard: You can target 1 face-up monster on the field, equip that target with this card. That monster loses 500 ATK while equipped with this card.
+67;Insect Queen;INSECTO;2200;2400;91512835;imagenes/67.jpg;"This card gains 200 ATK for each Insect monster on the field. Cannot declare an attack unless you Tribute 1 monster. Once per turn, during the End Phase, if this card destroyed an opponent's monster by battle this turn: Special Summon 1 ""Insect Monster Token"" (Insect/EARTH/Level 1/ATK 100/DEF 100) in Attack Position."
+68;Cyber Harpie Lady;BESTIA_ALADA;1800;1300;80316585;imagenes/68.jpg;"(This card's name is always treated as ""Harpie Lady"".)"
+69;Dark Elf;LANZADOR_DE_CONJUROS;2000;800;21417692;imagenes/69.jpg;This card requires a cost of 1000 of your own Life Points to attack.
+70;Lord of D.;LANZADOR_DE_CONJUROS;1200;1100;17985575;imagenes/70.jpg;Neither player can target Dragon monsters on the field with card effects.
+71;Battle Ox;BESTIA_GUERRERA;1700;1000;05053103;imagenes/71.jpg;A monster with tremendous power, it destroys enemies with a swing of its axe.
+72;Rogue Doll;LANZADOR_DE_CONJUROS;1600;1000;91939608;imagenes/72.jpg;A deadly doll gifted with mystical power, it is particularly powerful when attacking against dark forces.
+73;Crass Clown;DEMONIO;1350;1400;93889755;imagenes/73.jpg;When this card is changed from Defense Position to Attack Position, return 1 monster on your opponent's side of the field to the owner's hand.
+74;Armed Dragon LV3;DRAGON;1200;900;00980973;imagenes/74.jpg;"During your Standby Phase: You can send this card to the GY, Special Summon 1 ""Armed Dragon LV5"" from your hand or Deck."
+75;Armed Dragon LV5;DRAGON;2400;1700;46384672;imagenes/75.jpg;"You can send 1 monster from your hand to the GY, then target 1 monster your opponent controls with ATK less than or equal to the sent monster's ATK, destroy that target. During the End Phase, if this card destroyed a monster by battle this turn: You can send this card to the GY, Special Summon 1 ""Armed Dragon LV7"" from your hand or Deck."
+76;Armed Dragon LV7;DRAGON;2800;1000;73879377;imagenes/76.jpg;"Cannot be Normal Summoned/Set. Must be Special Summoned by ""Armed Dragon LV5"". You can send 1 monster from your hand to the GY, destroy all monsters your opponent controls with ATK less than or equal to that sent monster's ATK."
+77;Sorcerer of Dark Magic;LANZADOR_DE_CONJUROS;3200;2800;88619463;imagenes/77.jpg;Cannot be Normal Summoned/Set. Must be Special Summoned (from your hand) by Tributing 2 Level 6 or higher Spellcaster-Type monsters, and cannot be Special Summoned by other ways. During either player's turn, when a Trap Card is activated: You can negate the activation, and if you do, destroy it. This card must be face-up on the field to activate and to resolve this effect.
+78;Mokey Mokey;HADA;300;100;27288416;imagenes/78.jpg;An outcast angel. Nobody knows what he is thinking at all. Sometimes he gets mad and that is dreadful.
+79;Blue-Eyes Alternative White Dragon;DRAGON;3000;2500;38517737;imagenes/79.jpg;"Cannot be Normal Summoned/Set. Must first be Special Summoned (from your hand) by revealing ""Blue-Eyes White Dragon"" in your hand. You can only Special Summon ""Blue-Eyes Alternative White Dragon"" once per turn this way. This card's name becomes ""Blue-Eyes White Dragon"" while it is on the field or in the Graveyard. Once per turn: You can target 1 monster your opponent controls, destroy it. This card cannot attack the turn this effect is activated."
+80;Dark Paladin;LANZADOR_DE_CONJUROS;2900;2400;98502113;imagenes/80.jpg;"""Dark Magician"" + ""Buster Blader"" Must be Fusion Summoned. When a Spell Card is activated (Quick Effect): You can discard 1 card, negate the activation, and if you do, destroy it. This card must be face-up on the field to activate and to resolve this effect. Gains 500 ATK for each Dragon monster on the field and in the GY."
+81;Valkyrion the Magna Warrior;ROCA;3500;3850;75347539;imagenes/81.jpg;"Cannot be Normal Summoned/Set. Must first be Special Summoned (from your hand) by Tributing 1 ""Alpha The Magnet Warrior"", ""Beta The Magnet Warrior"", and ""Gamma The Magnet Warrior"" from your hand and/or field. You can Tribute this card, then target 1 ""Alpha The Magnet Warrior"", ""Beta The Magnet Warrior"", and ""Gamma The Magnet Warrior"" in your Graveyard, Special Summon them."
+82;Alpha The Magnet Warrior;ROCA;1400;1700;99785935;imagenes/82.jpg;''Alpha, Beta, and Gamma meld as one to form a powerful monster.''
+83;Beta The Magnet Warrior;ROCA;1700;1600;39256679;imagenes/83.jpg;''Alpha, Beta, and Gamma meld as one to form a powerful monster.''
+84;Gamma the Magnet Warrior;ROCA;1500;1800;11549357;imagenes/84.jpg;Alpha, Beta, and Gamma meld as one to form a powerful monster.
+85;Gandora the Dragon of Destruction;DRAGON;0;0;64681432;imagenes/85.jpg;Cannot be Special Summoned. You can pay half your LP, destroy as many cards on the field as possible (other than this card), and if you do, banish them. This card gains 300 ATK for each card destroyed this way. Once per turn, during the End Phase, if this card was Normal or Flip Summoned this turn: Send it to the Graveyard.
+86;Great Moth;INSECTO;2600;2500;14141448;imagenes/86.jpg;"This monster cannot be Normal Summoned or Set. This card can only be Special Summoned by Tributing ""Petit Moth"" during your 4th turn after ""Petit Moth"" has been equipped with ""Cocoon of Evolution""."
+87;Perfectly Ultimate Great Moth;INSECTO;3500;3000;48579379;imagenes/87.jpg;"Cannot be Normal Summoned/Set. Must first be Special Summoned (from your hand) by Tributing 1 ""Petit Moth"" on your 6th turn or later after it was equipped with ""Cocoon of Evolution""."
+88;Dark Armed Dragon;DRAGON;2800;1000;65192027;imagenes/88.jpg;Cannot be Normal Summoned/Set. Must be Special Summoned (from your hand) by having exactly 3 DARK monsters in your GY. You can banish 1 DARK monster from your GY, then target 1 card on the field, destroy that target.
+89;Number 39: Utopia;GUERRERO;2500;2000;84013237;imagenes/89.jpg;2 Level 4 monsters When a monster declares an attack: You can detach 1 material from this card, negate the attack. If this card is targeted for an attack, while it has no material: Destroy this card.
+90;Tour Guide From the Underworld;DEMONIO;1000;600;10802915;imagenes/90.jpg;When this card is Normal Summoned: You can Special Summon 1 Level 3 Fiend monster from your hand or Deck, but negate its effects, also it cannot be used as Synchro Material.
+91;Ash Blossom & Joyous Spring;ZOMBI;0;1800;14558127;imagenes/91.jpg;"When a card or effect is activated that includes any of these effects (Quick Effect): You can discard this card, negate that effect. ● Add a card from the Deck to the hand. ● Special Summon from the Deck. ● Send a card from the Deck to the GY. You can only use this effect of ""Ash Blossom & Joyous Spring"" once per turn."
+92;"Maxx ""C""";INSECTO;500;200;23434538;imagenes/92.jpg;"During either player's turn: You can send this card from your hand to the Graveyard, this turn, each time your opponent Special Summons a monster(s), immediately draw 1 card. You can only use 1 ""Maxx ""C"""" per turn."
+93;Effect Veiler;LANZADOR_DE_CONJUROS;0;0;97268402;imagenes/93.jpg;During your opponent's Main Phase (Quick Effect): You can send this card from your hand to the GY, then target 1 Effect Monster your opponent controls, negate the effects of that face-up monster your opponent controls, until the end of this turn.
+94;Droll & Lock Bird;LANZADOR_DE_CONJUROS;0;0;94145021;imagenes/94.jpg;If a card(s) is added from the Main Deck to your opponent's hand, except during the Draw Phase (Quick Effect): You can send this card from your hand to the GY, for the rest of this turn, cards cannot be added from either player's Main Deck to the hand.
+95;Kaiser Sea Horse;SERPIENTE_MARINA;1700;1650;17444133;imagenes/95.jpg;This card can be treated as 2 Tributes for the Tribute Summon of a LIGHT monster.
+96;Hane-Hane;BESTIA;450;500;07089711;imagenes/96.jpg;FLIP: Select 1 monster on the field and return it to its owner's hand.
+97;Goblin Attack Force;GUERRERO;2300;0;78658564;imagenes/97.jpg;If this card attacks, it is changed to Defense Position at the end of the Battle Phase, and its battle position cannot be changed until the End Phase of your next turn.
+98;Axe Raider;GUERRERO;1700;1150;48305365;imagenes/98.jpg;An axe-wielding monster of tremendous strength and agility.
+99;Panther Warrior;BESTIA_GUERRERA;2000;1600;42035044;imagenes/99.jpg;This card cannot declare an attack unless you Tribute 1 monster.
+100;Chaos Sorcerer;LANZADOR_DE_CONJUROS;2300;2000;09596126;imagenes/100.jpg;Cannot be Normal Summoned/Set. Must first be Special Summoned (from your hand) by banishing 1 LIGHT and 1 DARK monster from your GY. Once per turn: You can target 1 face-up monster on the field, banish that target. This card cannot attack the turn you activate this effect.
