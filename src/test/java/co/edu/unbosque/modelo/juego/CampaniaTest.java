@@ -193,6 +193,17 @@ class CampaniaTest {
     }
 
     @Test
+    void elDeckInicialSonLas40CartasMasDebilesSinRepetir() {
+        Carta[] deck = Campania.deckInicial(CartasDePrueba.catalogoVariado());
+
+        assertEquals(Deck.TAMANIO, deck.length);
+        for (int i = 0; i < deck.length; i++) {
+            assertEquals(i + 1, deck[i].getId());
+        }
+        assertThrows(IllegalArgumentException.class, () -> Campania.deckInicial(null));
+    }
+
+    @Test
     void datosInvalidosLanzanExcepcion() {
         assertThrows(IllegalArgumentException.class, () -> new Campania(null, catalogoUniforme(1, 1)));
         assertThrows(IllegalArgumentException.class, () -> new Campania(new JugadorDePrueba(), null));
