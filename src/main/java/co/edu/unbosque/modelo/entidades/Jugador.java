@@ -4,117 +4,252 @@ import co.edu.unbosque.modelo.juego.Chest;
 import co.edu.unbosque.modelo.juego.Deck;
 
 /**
- * El jugador: su colección (Chest y Deck), las cartas que ya descubrió y su avance
- * en el modo historia. Es lo que se guarda y se carga en la partida.
+ * Representa al jugador de una partida. Administra su colección, registra las
+ * cartas descubiertas y conserva el avance de la campaña.
  *
- * <p>Responsable: Daniel. Contrato del hito H0: Brayan y Santiago usan
- * {@link #estaDescubierta(int)} y {@link #recibirCarta(Carta)}.
+ * <p>
+ * Responsable: Daniel.
  */
 public class Jugador {
 
-    /** Cantidad de rivales del modo historia. */
-    public static final int TOTAL_RIVALES = 3;
+	/** Cantidad de rivales del modo historia. */
+	public static final int TOTAL_RIVALES = 3;
 
-    private final String nombre;
-    // Índice = id de la carta. La posición 0 no se usa, así el id se usa directo.
-    private final boolean[] descubiertas = new boolean[Carta.ID_MAXIMO + 1];
-    private int cantidadDescubiertas;
-    private int rivalesVencidos;
-    private final Chest chest = new Chest();
-    private final Deck deck = new Deck();
+	/** Nombre con el que se identifica al jugador. */
+	private final String nombre;
 
-    /**
-     * @throws IllegalArgumentException si el nombre está vacío
-     */
-    public Jugador(String nombre) {
-        if (nombre == null || nombre.isBlank()) {
-            throw new IllegalArgumentException("El jugador necesita un nombre");
-        }
-        this.nombre = nombre.trim();
-    }
+	/** Cofre con las cartas disponibles para armar la baraja. */
+	private final Chest chest = new Chest();
 
-    public String getNombre() {
-        return nombre;
-    }
+	/** Baraja personal que el jugador prepara para los duelos. */
+	private final Deck deck = new Deck();
 
-    /**
-     * Indica si el jugador ha tenido esta carta alguna vez. El inventario la muestra
-     * con imagen si es así, o en negro si no. Complejidad: O(1).
-     *
-     * @throws IllegalArgumentException si el id no está entre 1 y 100
-     */
-    public boolean estaDescubierta(int idCarta) {
-        validarId(idCarta);
-        return descubiertas[idCarta];
-    }
+	/** Registro de cartas descubiertas por ID. La posición 0 queda libre. */
+	private final boolean[] descubiertas = new boolean[Carta.ID_MAXIMO + 1];
 
-    /**
-     * Marca una carta como descubierta. Marcarla dos veces no cuenta doble. Complejidad: O(1).
-     *
-     * @throws IllegalArgumentException si el id no está entre 1 y 100
-     */
-    public void marcarDescubierta(int idCarta) {
-        validarId(idCarta);
-        if (!descubiertas[idCarta]) {
-            descubiertas[idCarta] = true;
-            cantidadDescubiertas++;
-        }
-    }
+	/** Cantidad de IDs distintos que el jugador ha descubierto. */
+	private int cantidadDescubiertas;
 
-    /** Complejidad: O(1). */
-    public int getCantidadDescubiertas() {
-        return cantidadDescubiertas;
-    }
+	/** Cantidad de rivales vencidos en el modo historia. */
+	private int rivalesVencidos;
 
-    /**
-     * Entrega una carta al jugador (recompensa de un duelo o contraseña): la marca como
-     * descubierta y la agrega al Chest. Complejidad: la de {@link Chest#agregar(Carta)}.
-     *
-     * @return {@code false} si el Chest la rechazó, por ejemplo porque ya tiene 3 copias.
-     *         Aun así queda marcada como descubierta.
-     * @throws IllegalArgumentException si la carta es {@code null}
-     */
-    public boolean recibirCarta(Carta carta) {
-        if (carta == null) {
-            throw new IllegalArgumentException("La carta no puede ser null");
-        }
-        marcarDescubierta(carta.getId());
-        return chest.agregar(carta);
-    }
+	/**
+	 * Crea un jugador con la colección vacía y sin avance en la campaña.
+	 * Complejidad: O(n) respecto a la longitud del nombre.
+	 *
+	 * @param nombre nombre del jugador
+	 * @throws IllegalArgumentException si el nombre es nulo, está vacío o solo
+	 *                                  contiene espacios
+	 */
+	public Jugador(String nombre) {
+		if (nombre == null || nombre.isBlank()) {
+			throw new IllegalArgumentException("El jugador necesita un nombre");
+		}
 
-    /** Rivales del modo historia ya vencidos, de 0 a 3. Complejidad: O(1). */
-    public int getRivalesVencidos() {
-        return rivalesVencidos;
-    }
+		this.nombre = nombre.trim();
+	}
 
-    /**
-     * Registra que venció al siguiente rival del modo historia. Complejidad: O(1).
-     *
-     * @throws IllegalStateException si ya venció a los 3
-     */
-    public void registrarRivalVencido() {
-        if (rivalesVencidos >= TOTAL_RIVALES) {
-            throw new IllegalStateException("El jugador ya venció a los " + TOTAL_RIVALES + " rivales");
-        }
-        rivalesVencidos++;
-    }
+	/**
+	 * Consulta el nombre del jugador. Complejidad: O(1).
+	 *
+	 * @return nombre del jugador
+	 */
+	public String getNombre() {
+		return nombre;
+	}
 
-    /** Complejidad: O(1). */
-    public boolean completoModoHistoria() {
-        return rivalesVencidos == TOTAL_RIVALES;
-    }
+	/**
+	 * Devuelve el cofre del jugador. Complejidad: O(1).
+	 *
+	 * @return cofre de la partida
+	 */
+	public Chest getChest() {
+		return chest;
+	}
 
-    public Chest getChest() {
-        return chest;
-    }
+	/**
+	 * Devuelve la baraja personal del jugador. Complejidad: O(1).
+	 *
+	 * @return baraja de la partida
+	 */
+	public Deck getDeck() {
+		return deck;
+	}
 
-    public Deck getDeck() {
-        return deck;
-    }
+	/**
+	 * Marca la carta como descubierta y agrega una copia al cofre si el jugador aún
+	 * tiene menos de tres copias entre cofre y baraja. Complejidad: O(1).
+	 *
+	 * @param carta carta recibida por recompensa, contraseña u otra entrega
+	 * @return {@code true} si se agregó la copia o {@code false} si se alcanzó el
+	 *         límite. La carta queda descubierta en ambos casos.
+	 * @throws IllegalArgumentException si la carta es nula
+	 */
+	public boolean recibirCarta(Carta carta) {
+		if (carta == null) {
+			throw new IllegalArgumentException("La carta no puede ser null");
+		}
 
-    private static void validarId(int idCarta) {
-        if (idCarta < 1 || idCarta > Carta.ID_MAXIMO) {
-            throw new IllegalArgumentException("El id debe estar entre 1 y " + Carta.ID_MAXIMO + ": " + idCarta);
-        }
-    }
+		int idCarta = carta.getId();
+		marcarDescubierta(idCarta);
+
+		int totalCopias = chest.copiasDe(idCarta) + deck.copiasDe(idCarta);
+		if (totalCopias >= Chest.MAXIMO_COPIAS) {
+			return false;
+		}
+
+		return chest.agregar(carta);
+	}
+
+	/**
+	 * Traslada una copia del cofre a la baraja. Si la baraja está llena o rechaza
+	 * la copia, la carta permanece en el cofre. Complejidad: O(n²) en el peor caso,
+	 * con n copias en el cofre.
+	 *
+	 * @param idCarta ID de la carta que se quiere pasar a la baraja
+	 * @return {@code true} si se trasladó una copia
+	 */
+	public boolean moverCartaAlDeck(int idCarta) {
+		if (deck.estaCompleto() || chest.copiasDe(idCarta) == 0) {
+			return false;
+		}
+
+		Carta carta = chest.buscarPorId(idCarta);
+		if (carta == null || !deck.agregar(carta)) {
+			return false;
+		}
+
+		if (!chest.quitar(idCarta)) {
+			deck.quitar(idCarta);
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 * Devuelve al cofre una copia de la baraja. Si el cofre rechaza la copia, la
+	 * carta permanece en la baraja. Complejidad: O(n²) en el peor caso, con n
+	 * copias en la baraja.
+	 *
+	 * @param idCarta ID de la carta que se quiere devolver al cofre
+	 * @return {@code true} si se trasladó una copia
+	 */
+	public boolean moverCartaAlChest(int idCarta) {
+		if (deck.copiasDe(idCarta) == 0) {
+			return false;
+		}
+
+		Carta carta = buscarPorId(deck.cartasActuales(), idCarta);
+		if (carta == null || !chest.agregar(carta)) {
+			return false;
+		}
+
+		if (!deck.quitar(idCarta)) {
+			chest.quitar(idCarta);
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 * Consulta si el jugador ya descubrió una carta. Complejidad: O(1).
+	 *
+	 * @param idCarta ID de la carta que se quiere consultar
+	 * @return {@code true} si la carta está descubierta
+	 * @throws IllegalArgumentException si el ID está fuera del catálogo
+	 */
+	public boolean estaDescubierta(int idCarta) {
+		validarId(idCarta);
+		return descubiertas[idCarta];
+	}
+
+	/**
+	 * Registra una carta como descubierta. El contador aumenta solo la primera vez
+	 * que se registra ese ID. Complejidad: O(1).
+	 *
+	 * @param idCarta ID de la carta que se quiere registrar
+	 * @throws IllegalArgumentException si el ID está fuera del catálogo
+	 */
+	public void marcarDescubierta(int idCarta) {
+		validarId(idCarta);
+
+		if (!descubiertas[idCarta]) {
+			descubiertas[idCarta] = true;
+			cantidadDescubiertas++;
+		}
+	}
+
+	/**
+	 * Consulta cuántas cartas distintas se han descubierto. Complejidad: O(1).
+	 *
+	 * @return cantidad de IDs descubiertos
+	 */
+	public int getCantidadDescubiertas() {
+		return cantidadDescubiertas;
+	}
+
+	/**
+	 * Consulta el progreso del jugador en el modo historia. Complejidad: O(1).
+	 *
+	 * @return cantidad de rivales vencidos
+	 */
+	public int getRivalesVencidos() {
+		return rivalesVencidos;
+	}
+
+	/**
+	 * Registra la victoria contra el siguiente rival. Complejidad: O(1).
+	 *
+	 * @throws IllegalStateException si el jugador ya venció a todos los rivales
+	 */
+	public void registrarRivalVencido() {
+		if (rivalesVencidos >= TOTAL_RIVALES) {
+			throw new IllegalStateException("El jugador ya venció a los " + TOTAL_RIVALES + " rivales");
+		}
+
+		rivalesVencidos++;
+	}
+
+	/**
+	 * Comprueba si el jugador terminó la campaña. Complejidad: O(1).
+	 *
+	 * @return {@code true} si ya venció a todos los rivales
+	 */
+	public boolean completoModoHistoria() {
+		return rivalesVencidos == TOTAL_RIVALES;
+	}
+
+	/**
+	 * Busca la primera carta con el ID indicado. Complejidad: O(n), con n elementos
+	 * en el arreglo.
+	 *
+	 * @param cartas  arreglo que se va a recorrer
+	 * @param idCarta ID que se quiere encontrar
+	 * @return primera carta con ese ID, o {@code null} si está ausente
+	 */
+	private static Carta buscarPorId(Carta[] cartas, int idCarta) {
+		for (Carta carta : cartas) {
+			if (carta.getId() == idCarta) {
+				return carta;
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * Comprueba que el ID esté dentro del rango admitido por el catálogo.
+	 * Complejidad: O(1).
+	 *
+	 * @param idCarta ID que se quiere validar
+	 * @throws IllegalArgumentException si el ID es menor que 1 o mayor que
+	 *                                  {@link Carta#ID_MAXIMO}
+	 */
+	private static void validarId(int idCarta) {
+		if (idCarta < 1 || idCarta > Carta.ID_MAXIMO) {
+			throw new IllegalArgumentException("El id debe estar entre 1 y " + Carta.ID_MAXIMO + ": " + idCarta);
+		}
+	}
 }
