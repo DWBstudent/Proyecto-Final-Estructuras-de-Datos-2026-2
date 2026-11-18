@@ -77,6 +77,27 @@ public class Campania {
     }
 
     /**
+     * Deck inicial que recibe el jugador al empezar la campaña: 1 copia de las cartas con id
+     * 1 a {@value Deck#TAMANIO}, las más débiles del catálogo. Complejidad: O(n), con n = 40.
+     *
+     * @throws IllegalArgumentException si el catálogo es {@code null}
+     * @throws IllegalStateException si al catálogo le falta alguna carta
+     */
+    public static Carta[] deckInicial(Catalogo catalogo) {
+        if (catalogo == null) {
+            throw new IllegalArgumentException("Se necesita el catálogo para el Deck inicial");
+        }
+        Carta[] deck = new Carta[Deck.TAMANIO];
+        for (int i = 0; i < deck.length; i++) {
+            deck[i] = catalogo.buscarPorId(i + 1);
+            if (deck[i] == null) {
+                throw new IllegalStateException("El catálogo no tiene la carta " + (i + 1));
+            }
+        }
+        return deck;
+    }
+
+    /**
      * La IA que corresponde a cada rival: 1, 2 o 3. Complejidad: O(1).
      *
      * @throws IllegalArgumentException si el número no está entre 1 y 3
