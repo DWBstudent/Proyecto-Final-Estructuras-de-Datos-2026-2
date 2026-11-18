@@ -1,11 +1,17 @@
 package co.edu.unbosque.controlador;
 
 import co.edu.unbosque.modelo.entidades.Carta;
+import co.edu.unbosque.modelo.entidades.Direccion;
 import co.edu.unbosque.modelo.entidades.Jugador;
+import co.edu.unbosque.modelo.juego.Catalogo;
 import co.edu.unbosque.modelo.juego.Deck;
+import co.edu.unbosque.modelo.juego.EditorColeccion;
+import co.edu.unbosque.modelo.juego.Inventario;
+import co.edu.unbosque.modelo.ordenamiento.CriterioOrdenCarta;
 import co.edu.unbosque.vista.PantallaChest;
 import co.edu.unbosque.vista.PantallaColeccion;
 import co.edu.unbosque.vista.PantallaDeck;
+import co.edu.unbosque.vista.PantallaInventario;
 import co.edu.unbosque.vista.PantallaProvisional;
 
 /**
@@ -23,8 +29,23 @@ public class ControladorMenu {
 	/** Jugador cuya colección se muestra y modifica. */
 	private final Jugador jugador;
 
+	/** Editor que comparte el historial entre las pantallas Chest y Deck. */
+	private final EditorColeccion editorColeccion;
+
 	/** Cartas de la pantalla activa, en el mismo orden que sus filas. */
 	private Carta[] cartasVisibles = new Carta[0];
+
+	/** Catálogo consultado por el inventario. */
+	private Catalogo catalogoInventario;
+
+	/** Modelo que conserva el cursor y la navegación por el grafo. */
+	private Inventario inventario;
+
+	/** Vista del inventario, creada al abrirla por primera vez. */
+	private PantallaInventario pantallaInventario;
+
+	/** Criterios disponibles, en el mismo orden que las opciones del selector. */
+	private final CriterioOrdenCarta[] criteriosOrden = CriterioOrdenCarta.values();
 
 	/**
 	 * Abre el menú con un jugador inicial. Complejidad O(1) para el tamaño fijo del
@@ -51,6 +72,7 @@ public class ControladorMenu {
 
 		this.navegador = navegador;
 		this.jugador = jugador;
+		this.editorColeccion = new EditorColeccion(jugador);
 	}
 
 	/** Abre la pantalla del modo historia. Complejidad O(1). */
@@ -69,17 +91,36 @@ public class ControladorMenu {
 	}
 
 	/**
-	 * Abre el cofre y deja el menú en el historial. Con la implementación actual,
-	 * cargar el cofre cuesta O(n² + C), donde n es la cantidad de copias y C es la
-	 * cantidad de IDs que recorre el contador.
+	 * Abre el cofre con un historial nuevo para esta sesión de edición. La carga
+	 * tiene el costo de consultar y presentar las cartas del cofre.
 	 */
 	public void irAColeccion() {
+		editorColeccion.limpiarHistorial();
 		navegador.ir(crearPantallaChest());
 	}
 
-	/** Abre la pantalla de inventario. Complejidad O(1). */
+	/**
+	 * Abre el inventario y conserva su cursor entre visitas. La primera apertura
+	 * construye el grafo y las 100 casillas.
+	 *
+	 * @throws IllegalArgumentException                                 si no se
+	 *                                                                  puede cargar
+	 *                                                                  el catálogo
+	 * @throws co.edu.unbosque.modelo.persistencia.CsvInvalidoException si el
+	 *                                                                  archivo de
+	 *                                                                  cartas es
+	 *                                                                  inválido
+	 */
 	public void irAInventario() {
-		navegador.ir(new PantallaProvisional("Inventario", navegador));
+		if (pantallaInventario == null) {
+			catalogoInventario = new CatalogoCsv();
+			inventario = new Inventario(catalogoInventario);
+			pantallaInventario = new PantallaInventario(Inventario.FILAS, Inventario.COLUMNAS, this::cargarInventario,
+					this::seleccionarCasillaInventario, this::moverCursorInventario, this::buscarCartaSinDescubrir,
+					navegador::volver);
+		}
+
+		navegador.ir(pantallaInventario);
 	}
 
 	/** Abre la pantalla de contraseñas. Complejidad O(1). */
@@ -88,23 +129,32 @@ public class ControladorMenu {
 	}
 
 	/**
-	 * Conecta la vista del cofre con sus consultas y acciones.
+	 * Construye el cofre y conecta sus acciones de selección, traslado y
+	 * ordenamiento.
 	 *
 	 * @return pantalla del cofre
 	 */
 	private PantallaChest crearPantallaChest() {
-		return new PantallaChest(vista -> cargarChest(vista, 0), this::mostrarCartaSeleccionada, this::pasarAlDeck,
-				() -> navegador.reemplazar(crearPantallaDeck()), navegador::volver);
+		PantallaChest pantalla = new PantallaChest(vista -> cargarChest(vista, 0), this::mostrarCartaSeleccionada,
+				this::pasarAlDeck, () -> navegador.reemplazar(crearPantallaDeck()), navegador::volver);
+		pantalla.configurarOrden(nombresCriterios(), this::ordenarChest);
+		pantalla.configurarBusqueda(this::buscarCartaEnChest);
+		pantalla.configurarHistorial(this::deshacerMovimiento, this::rehacerMovimiento);
+		return pantalla;
 	}
 
 	/**
-	 * Conecta la vista de la baraja con sus consultas y acciones.
+	 * Construye la baraja y conecta sus acciones de selección, traslado y
+	 * ordenamiento.
 	 *
 	 * @return pantalla de la baraja
 	 */
 	private PantallaDeck crearPantallaDeck() {
-		return new PantallaDeck(vista -> cargarDeck(vista, 0), this::mostrarCartaSeleccionada, this::devolverAlChest,
-				() -> navegador.reemplazar(crearPantallaChest()), navegador::volver);
+		PantallaDeck pantalla = new PantallaDeck(vista -> cargarDeck(vista, 0), this::mostrarCartaSeleccionada,
+				this::devolverAlChest, () -> navegador.reemplazar(crearPantallaChest()), navegador::volver);
+		pantalla.configurarOrden(nombresCriterios(), this::ordenarDeck);
+		pantalla.configurarHistorial(this::deshacerMovimiento, this::rehacerMovimiento);
+		return pantalla;
 	}
 
 	/**
@@ -150,6 +200,7 @@ public class ControladorMenu {
 		}
 
 		vista.mostrarCartas(filas, resumen, filaPreferida);
+		vista.mostrarEstadoHistorial(editorColeccion.puedeDeshacer(), editorColeccion.puedeRehacer());
 	}
 
 	/**
@@ -183,7 +234,7 @@ public class ControladorMenu {
 			return;
 		}
 
-		if (jugador.moverCartaAlDeck(carta.getId())) {
+		if (editorColeccion.moverAlDeck(carta.getId())) {
 			cargarChest(vista, fila);
 			vista.mostrarMensaje("Se pasó una copia de " + carta.getNombre() + " al Deck.");
 		} else if (jugador.getDeck().estaCompleto()) {
@@ -205,7 +256,7 @@ public class ControladorMenu {
 			return;
 		}
 
-		if (jugador.moverCartaAlChest(carta.getId())) {
+		if (editorColeccion.moverAlChest(carta.getId())) {
 			cargarDeck(vista, fila);
 			vista.mostrarMensaje("Se devolvió una copia de " + carta.getNombre() + " al cofre.");
 		} else {
@@ -225,5 +276,294 @@ public class ControladorMenu {
 		}
 
 		return cartasVisibles[fila];
+	}
+
+	/**
+	 * Prepara los textos del selector respetando el orden de los criterios.
+	 * Complejidad: O(k), con k criterios disponibles.
+	 *
+	 * @return nombres que recibirá la vista
+	 */
+	private String[] nombresCriterios() {
+		String[] nombres = new String[criteriosOrden.length];
+
+		for (int indice = 0; indice < criteriosOrden.length; indice++) {
+			nombres[indice] = criteriosOrden[indice].getNombreVisible();
+		}
+
+		return nombres;
+	}
+
+	/**
+	 * Solicita ordenar el cofre con Merge Sort y actualiza la pantalla. Con la
+	 * copia actual de Chest, el flujo completo cuesta O(n²) para comparaciones de
+	 * costo constante.
+	 *
+	 * @param vista          pantalla del cofre
+	 * @param indiceCriterio índice elegido en el selector
+	 */
+	private void ordenarChest(PantallaColeccion vista, int indiceCriterio) {
+		if (indiceCriterio < 0 || indiceCriterio >= criteriosOrden.length) {
+			return;
+		}
+
+		Carta seleccionada = cartaEnFila(vista.getFilaSeleccionada());
+		CriterioOrdenCarta criterio = criteriosOrden[indiceCriterio];
+
+		jugador.getChest().ordenar(criterio);
+		cargarChest(vista, 0);
+		restaurarSeleccion(vista, seleccionada);
+		vista.mostrarMensaje("Cofre ordenado por " + criterio.getNombreVisible() + ".");
+	}
+
+	/**
+	 * Solicita ordenar la baraja con Insertion Sort y actualiza la pantalla.
+	 * Complejidad: O(n²) en el peor caso para comparaciones de costo constante.
+	 *
+	 * @param vista          pantalla de la baraja
+	 * @param indiceCriterio índice elegido en el selector
+	 */
+	private void ordenarDeck(PantallaColeccion vista, int indiceCriterio) {
+		if (indiceCriterio < 0 || indiceCriterio >= criteriosOrden.length) {
+			return;
+		}
+
+		Carta seleccionada = cartaEnFila(vista.getFilaSeleccionada());
+		CriterioOrdenCarta criterio = criteriosOrden[indiceCriterio];
+		jugador.getDeck().ordenar(criterio);
+		cargarDeck(vista, 0);
+		restaurarSeleccion(vista, seleccionada);
+		vista.mostrarMensaje("Baraja ordenada por " + criterio.getNombreVisible() + ".");
+	}
+
+	/**
+	 * Selecciona la primera copia del ID que estaba seleccionado antes de ordenar.
+	 * Utiliza las cartas que se cargaron en la pantalla actualizada. Complejidad:
+	 * O(n).
+	 *
+	 * @param vista    pantalla que se acaba de actualizar
+	 * @param anterior carta seleccionada antes del ordenamiento, o null
+	 */
+	private void restaurarSeleccion(PantallaColeccion vista, Carta anterior) {
+		if (anterior == null) {
+			return;
+		}
+
+		for (int fila = 0; fila < cartasVisibles.length; fila++) {
+			if (cartasVisibles[fila].getId() == anterior.getId()) {
+				vista.seleccionarFila(fila);
+				return;
+			}
+		}
+	}
+
+	/**
+	 * Solicita deshacer un traslado y actualiza la pantalla activa. El costo
+	 * incluye el traslado y la recarga de la colección.
+	 *
+	 * @param vista pantalla desde la que se solicitó la acción
+	 */
+	private void deshacerMovimiento(PantallaColeccion vista) {
+		if (!editorColeccion.deshacer()) {
+			vista.mostrarMensaje("No se pudo deshacer el movimiento.");
+			return;
+		}
+
+		recargarColeccion(vista);
+		vista.mostrarMensaje("Se deshizo el último traslado.");
+	}
+
+	/**
+	 * Solicita rehacer un traslado y actualiza la pantalla activa. El costo incluye
+	 * el traslado y la recarga de la colección.
+	 *
+	 * @param vista pantalla desde la que se solicitó la acción
+	 */
+	private void rehacerMovimiento(PantallaColeccion vista) {
+		if (!editorColeccion.rehacer()) {
+			vista.mostrarMensaje("No se pudo rehacer el movimiento.");
+			return;
+		}
+
+		recargarColeccion(vista);
+		vista.mostrarMensaje("Se rehizo el último traslado.");
+	}
+
+	/**
+	 * Actualiza la colección visible después de cambiar su contenido. Intenta
+	 * conservar seleccionada la misma carta si sigue presente.
+	 *
+	 * @param vista pantalla que debe actualizarse
+	 */
+	private void recargarColeccion(PantallaColeccion vista) {
+		Carta seleccionada = cartaEnFila(vista.getFilaSeleccionada());
+		int fila = Math.max(0, vista.getFilaSeleccionada());
+
+		if (vista instanceof PantallaChest) {
+			cargarChest(vista, fila);
+		} else {
+			cargarDeck(vista, fila);
+		}
+
+		restaurarSeleccion(vista, seleccionada);
+	}
+
+	/**
+	 * Prepara las 100 posiciones y el estado de descubrimiento del jugador.
+	 * Complejidad: O(n), con n posiciones, suponiendo consultas de catálogo O(1).
+	 */
+	private void cargarInventario() {
+		int cantidad = Inventario.FILAS * Inventario.COLUMNAS;
+		String[] textos = new String[cantidad];
+		boolean[] descubiertas = new boolean[cantidad];
+
+		for (int indice = 0; indice < cantidad; indice++) {
+			int idCarta = indice + 1;
+			descubiertas[indice] = jugador.estaDescubierta(idCarta);
+			textos[indice] = String.format("%03d", idCarta);
+		}
+
+		String resumen = jugador.getCantidadDescubiertas() + " / " + cantidad
+				+ " descubiertas · Dorado: descubierta · Oscuro: pendiente";
+
+		pantallaInventario.mostrarCuadricula(textos, descubiertas, resumen);
+		actualizarDetalleInventario();
+	}
+
+	/**
+	 * Solicita un paso al grafo y actualiza el detalle si el cursor se movió.
+	 * Complejidad: O(1), porque cada vértice tiene como máximo ocho vecinos.
+	 *
+	 * @param cambioFila    desplazamiento solicitado en filas
+	 * @param cambioColumna desplazamiento solicitado en columnas
+	 */
+	private void moverCursorInventario(int cambioFila, int cambioColumna) {
+		Direccion direccion = direccionPara(cambioFila, cambioColumna);
+
+		if (direccion == null) {
+			return;
+		}
+
+		if (inventario.mover(direccion)) {
+			actualizarDetalleInventario();
+			pantallaInventario.mostrarMensaje("");
+		} else {
+			pantallaInventario.mostrarMensaje("Llegaste al borde del inventario.");
+		}
+	}
+
+	/**
+	 * Lleva el cursor a la casilla pulsada avanzando por los enlaces del grafo.
+	 * Complejidad: O(max(f, c)), con f y c pasos de diferencia hasta el destino.
+	 *
+	 * @param indice posición pulsada, empezando desde 0
+	 */
+	private void seleccionarCasillaInventario(int indice) {
+		int cantidad = Inventario.FILAS * Inventario.COLUMNAS;
+		if (indice < 0 || indice >= cantidad) {
+			return;
+		}
+
+		int filaDestino = indice / Inventario.COLUMNAS;
+		int columnaDestino = indice % Inventario.COLUMNAS;
+		while (inventario.getFila() != filaDestino || inventario.getColumna() != columnaDestino) {
+			int cambioFila = Integer.compare(filaDestino, inventario.getFila());
+			int cambioColumna = Integer.compare(columnaDestino, inventario.getColumna());
+			Direccion direccion = direccionPara(cambioFila, cambioColumna);
+
+			if (direccion == null || !inventario.mover(direccion)) {
+				pantallaInventario.mostrarMensaje("No se pudo alcanzar esa posición.");
+				actualizarDetalleInventario();
+				return;
+			}
+		}
+
+		actualizarDetalleInventario();
+		pantallaInventario.mostrarMensaje("");
+	}
+
+	/**
+	 * Usa BFS para seleccionar la carta sin descubrir más cercana. Complejidad: O(V
+	 * + E), con V vértices y E arcos del grafo.
+	 */
+	private void buscarCartaSinDescubrir() {
+		if (inventario.irALaMasCercanaSinDescubrir(jugador)) {
+			actualizarDetalleInventario();
+			pantallaInventario.mostrarMensaje("Se seleccionó la carta sin descubrir más cercana.");
+		} else {
+			pantallaInventario.mostrarMensaje("Ya descubriste todas las cartas.");
+		}
+	}
+
+	/**
+	 * Entrega a la vista el detalle permitido para la selección actual.
+	 * Complejidad: O(1) con el catálogo indexado por ID.
+	 */
+	private void actualizarDetalleInventario() {
+		Carta carta = inventario.getCartaEnCursor();
+		int fila = inventario.getFila();
+		int columna = inventario.getColumna();
+
+		if (!jugador.estaDescubierta(carta.getId())) {
+			pantallaInventario.mostrarSeleccion(fila, columna, String.format("Carta #%03d", carta.getId()),
+					"Sin descubrir", "Consigue esta carta para consultar su imagen y sus datos.", null, false);
+			return;
+		}
+
+		String estadisticas = carta.getTipo().getNombreVisible() + " · ATK " + carta.getAtaque() + " · DEF "
+				+ carta.getDefensa();
+
+		pantallaInventario.mostrarSeleccion(fila, columna, carta.getNombre(), estadisticas, carta.getDescripcion(),
+				carta.getRutaImagen(), carta.getAtaque() >= 2500);
+	}
+
+	/**
+	 * Traduce un desplazamiento de la interfaz a una dirección del modelo.
+	 * Complejidad: O(1), porque existen ocho direcciones fijas.
+	 *
+	 * @param cambioFila    desplazamiento en filas
+	 * @param cambioColumna desplazamiento en columnas
+	 * @return dirección correspondiente, o null si el desplazamiento es inválido
+	 */
+	private Direccion direccionPara(int cambioFila, int cambioColumna) {
+		for (Direccion direccion : Direccion.values()) {
+			if (direccion.getDeltaFila() == cambioFila && direccion.getDeltaColumna() == cambioColumna) {
+				return direccion;
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * Busca un nombre mediante el AVL del cofre y selecciona su primera
+	 * coincidencia en la lista visible. Conserva el orden actual de las filas.
+	 *
+	 * @param vista  pantalla del cofre
+	 * @param nombre nombre completo escrito por el usuario
+	 */
+	private void buscarCartaEnChest(PantallaColeccion vista, String nombre) {
+		if (nombre == null || nombre.isBlank()) {
+			vista.mostrarMensaje("Escribe el nombre completo de una carta.");
+			return;
+		}
+
+		Carta[] coincidencias = jugador.getChest().buscarPorNombre(nombre);
+		if (coincidencias.length == 0) {
+			vista.mostrarMensaje("No tienes una carta con ese nombre en el cofre.");
+			return;
+		}
+
+		int idEncontrado = coincidencias[0].getId();
+		for (int fila = 0; fila < cartasVisibles.length; fila++) {
+			if (cartasVisibles[fila].getId() == idEncontrado) {
+				vista.seleccionarFila(fila);
+				vista.mostrarMensaje("Se encontraron " + coincidencias.length
+						+ " cartas distintas con ese nombre. Primera coincidencia seleccionada.");
+				return;
+			}
+		}
+
+		vista.mostrarMensaje("Actualiza el cofre para mostrar la carta encontrada.");
 	}
 }

@@ -177,3 +177,73 @@
 	{
 	-fx-background-color: #d6b578;
 }
+
+/* Selector de orden de la colección */
+.coleccion-retro .combo-box {
+	-fx-background-color: #302519;
+	-fx-background-radius: 0;
+	-fx-border-color: #b59158;
+	-fx-border-width: 1px;
+	-fx-padding: 3px;
+}
+
+.coleccion-retro .combo-box>.list-cell {
+	-fx-background-color: transparent;
+	-fx-text-fill: #fff1ca;
+	-fx-border-width: 0;
+}
+
+.coleccion-retro .combo-box .arrow {
+	-fx-background-color: #e7c27a;
+}
+
+.coleccion-retro .combo-box-popup .list-view {
+	-fx-background-color: #171419;
+	-fx-border-color: #b59158;
+}
+
+.coleccion-retro .combo-box-popup .list-cell {
+	-fx-background-color: #171419;
+	-fx-text-fill: #f1e2bd;
+	-fx-padding: 8px 12px;
+}
+
+.coleccion-retro .combo-box-popup .list-cell:filled:hover,
+	.coleccion-retro .combo-box-popup .list-cell:filled:selected {
+	-fx-background-color: #283878;
+	-fx-text-fill: #fff3cf;
+}
+
+/* Posiciones del inventario */
+.coleccion-retro .casilla-inventario {
+	-fx-background-color: #16131c;
+	-fx-background-insets: 0;
+	-fx-border-color: #4a3b2c;
+	-fx-border-width: 1px;
+	-fx-text-fill: #998a72;
+	-fx-font-size: 12px;
+	-fx-padding: 5px 2px;
+}
+
+/* Cartas que el jugador ya ha conseguido */
+.coleccion-retro .casilla-inventario:descubierta {
+	-fx-background-color: linear-gradient(to bottom, #72532c, #3c2c1c);
+	-fx-border-color: #c49b58;
+	-fx-text-fill: #fff0c6;
+}
+
+/* Posición sobre la que está el ratón */
+.coleccion-retro .casilla-inventario:hover {
+	-fx-border-color: #f7dc98;
+	-fx-text-fill: #fff3d3;
+}
+
+/* Cursor actual del inventario */
+.coleccion-retro .casilla-inventario:seleccionada, .coleccion-retro .casilla-inventario:seleccionada:hover
+	{
+	-fx-background-color: linear-gradient(to bottom, #374b8a, #19284e);
+	-fx-border-color: #ffe09a;
+	-fx-border-width: 2px;
+	-fx-text-fill: #ffffff;
+	-fx-font-weight: bold;
+}

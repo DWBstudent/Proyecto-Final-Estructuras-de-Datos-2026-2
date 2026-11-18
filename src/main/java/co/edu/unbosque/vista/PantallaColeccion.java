@@ -1,11 +1,13 @@
 package co.edu.unbosque.vista;
 
 import java.net.URL;
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.ObjIntConsumer;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
@@ -17,6 +19,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.css.PseudoClass;
+import javafx.scene.control.TextField;
 
 /**
  * Vista base del cofre y la baraja. Muestra las filas y el detalle que entrega
@@ -26,6 +29,9 @@ import javafx.css.PseudoClass;
  * Responsable: Brayan.
  */
 public abstract class PantallaColeccion implements Pantalla {
+
+	/** Contenedor del buscador, utilizado por la pantalla del cofre. */
+	private final HBox barraBusqueda = new HBox(8);
 
 	/** Contenedor principal de la pantalla. */
 	private final BorderPane raiz = new BorderPane();
@@ -60,6 +66,15 @@ public abstract class PantallaColeccion implements Pantalla {
 	/** Contenedor del detalle de la carta seleccionada. */
 	private final VBox panelDetalle;
 
+	/** Selector con los nombres de los criterios que entrega el controlador. */
+	private final ComboBox<String> selectorOrden = new ComboBox<>();
+
+	/** Botón que solicita revertir el último traslado. */
+	private final Button botonDeshacer = new Button("DESHACER");
+
+	/** Botón que solicita repetir el último traslado deshecho. */
+	private final Button botonRehacer = new Button("REHACER");
+
 	/**
 	 * Construye los controles y conecta sus eventos. Complejidad O(1) respecto al
 	 * número de cartas.
@@ -93,10 +108,16 @@ public abstract class PantallaColeccion implements Pantalla {
 		Label encabezado = new Label(titulo);
 		encabezado.getStyleClass().add("titulo");
 		cantidad.getStyleClass().add("contador");
-		VBox cabecera = new VBox(4, encabezado, cantidad);
+		selectorOrden.setPromptText("Selecciona un orden");
+		selectorOrden.setMaxWidth(Double.MAX_VALUE);
+		HBox opcionesOrden = new HBox(10, new Label("ORDENAR POR"), selectorOrden);
+		HBox.setHgrow(selectorOrden, Priority.ALWAYS);
+		VBox cabecera = new VBox(8, encabezado, cantidad, opcionesOrden);
+		barraBusqueda.setVisible(false);
+		barraBusqueda.setManaged(false);
+		cabecera.getChildren().add(barraBusqueda);
 		BorderPane.setMargin(cabecera, new Insets(0, 0, 16, 0));
 		raiz.setTop(cabecera);
-
 		VBox panelLista = new VBox(8, new Label("CARTAS"), lista);
 		panelLista.getStyleClass().add("panel");
 		VBox.setVgrow(lista, Priority.ALWAYS);
@@ -118,7 +139,10 @@ public abstract class PantallaColeccion implements Pantalla {
 		regresar.setOnAction(evento -> volver.run());
 		mensaje.setWrapText(true);
 		mensaje.getStyleClass().add("mensaje");
-		VBox pie = new VBox(8, mensaje, new HBox(10, trasladar, cambiar, regresar));
+		botonDeshacer.setDisable(true);
+		botonRehacer.setDisable(true);
+		HBox acciones = new HBox(10, trasladar, cambiar, botonDeshacer, botonRehacer, regresar);
+		VBox pie = new VBox(8, mensaje, acciones);
 		BorderPane.setMargin(pie, new Insets(12, 0, 0, 0));
 		raiz.setBottom(pie);
 		raiz.getStyleClass().add("coleccion-retro");
@@ -224,7 +248,6 @@ public abstract class PantallaColeccion implements Pantalla {
 		imagen.setFitWidth(210);
 		imagen.setFitHeight(260);
 		imagen.setPreserveRatio(true);
-
 		StackPane marco = new StackPane(imagen);
 		marco.setMinHeight(265);
 		marco.getStyleClass().add("marco-imagen");
@@ -240,7 +263,6 @@ public abstract class PantallaColeccion implements Pantalla {
 		texto.setPannable(true);
 		texto.setPrefViewportHeight(100);
 		VBox.setVgrow(texto, Priority.ALWAYS);
-
 		VBox detalle = new VBox(10, marco, nombre, estadisticas, texto);
 		detalle.setPrefWidth(330);
 		detalle.getStyleClass().add("panel");
@@ -255,5 +277,93 @@ public abstract class PantallaColeccion implements Pantalla {
 	 */
 	public final void mostrarAcabadoEspecial(boolean activa) {
 		panelDetalle.pseudoClassStateChanged(CARTA_PODEROSA, activa);
+	}
+
+	/**
+	 * Carga los nombres de los criterios y conecta la selección con el controlador.
+	 * Configurar el selector conserva el orden actual de las filas. Complejidad:
+	 * O(k), con k criterios disponibles.
+	 *
+	 * @param criterios nombres visibles de los criterios
+	 * @param alOrdenar acción que recibe la pantalla y el índice del criterio
+	 *                  elegido
+	 */
+	public final void configurarOrden(String[] criterios, ObjIntConsumer<PantallaColeccion> alOrdenar) {
+		selectorOrden.setOnAction(null);
+		selectorOrden.getItems().setAll(criterios);
+		selectorOrden.getSelectionModel().clearSelection();
+
+		selectorOrden.setOnAction(evento -> {
+			int indice = selectorOrden.getSelectionModel().getSelectedIndex();
+
+			if (indice >= 0) {
+				alOrdenar.accept(this, indice);
+			}
+		});
+	}
+
+	/**
+	 * Consulta la fila seleccionada. Complejidad: O(1).
+	 *
+	 * @return índice seleccionado, o -1 si la selección está vacía
+	 */
+	public final int getFilaSeleccionada() {
+		return lista.getSelectionModel().getSelectedIndex();
+	}
+
+	/**
+	 * Selecciona una fila existente y permite que se actualice su detalle. El costo
+	 * incluye la acción de selección conectada por el controlador.
+	 *
+	 * @param fila índice de la fila que se quiere seleccionar
+	 */
+	public final void seleccionarFila(int fila) {
+		if (fila >= 0 && fila < lista.getItems().size()) {
+			lista.getSelectionModel().select(fila);
+		}
+	}
+
+	/**
+	 * Conecta los botones del historial con sus acciones del controlador.
+	 * Complejidad: O(1).
+	 *
+	 * @param alDeshacer acción que recibe la pantalla al solicitar deshacer
+	 * @param alRehacer  acción que recibe la pantalla al solicitar rehacer
+	 */
+	public final void configurarHistorial(Consumer<PantallaColeccion> alDeshacer,
+			Consumer<PantallaColeccion> alRehacer) {
+		botonDeshacer.setOnAction(evento -> alDeshacer.accept(this));
+		botonRehacer.setOnAction(evento -> alRehacer.accept(this));
+	}
+
+	/**
+	 * Actualiza la disponibilidad de los botones del historial. Complejidad: O(1).
+	 *
+	 * @param puedeDeshacer indica si hay un traslado que se puede deshacer
+	 * @param puedeRehacer  indica si hay un traslado que se puede repetir
+	 */
+	public final void mostrarEstadoHistorial(boolean puedeDeshacer, boolean puedeRehacer) {
+		botonDeshacer.setDisable(!puedeDeshacer);
+		botonRehacer.setDisable(!puedeRehacer);
+	}
+
+	/**
+	 * Muestra el buscador y comunica el texto escrito al controlador. Permite
+	 * buscar con el botón o pulsando Enter. Complejidad: O(1) respecto a la
+	 * cantidad de cartas.
+	 *
+	 * @param alBuscar acción que recibe la pantalla y el texto escrito
+	 */
+	public final void configurarBusqueda(BiConsumer<PantallaColeccion, String> alBuscar) {
+		TextField campo = new TextField();
+		campo.setPromptText("Nombre completo de la carta");
+		HBox.setHgrow(campo, Priority.ALWAYS);
+		Button buscar = new Button("BUSCAR");
+		Runnable solicitarBusqueda = () -> alBuscar.accept(this, campo.getText());
+		buscar.setOnAction(evento -> solicitarBusqueda.run());
+		campo.setOnAction(evento -> solicitarBusqueda.run());
+		barraBusqueda.getChildren().setAll(campo, buscar);
+		barraBusqueda.setVisible(true);
+		barraBusqueda.setManaged(true);
 	}
 }
