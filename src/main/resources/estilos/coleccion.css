@@ -1,0 +1,179 @@
+.coleccion-retro {
+	-fx-background-color: radial-gradient(center 50% 8%, radius 95%, #43351f 0%, #211a13 48%,
+		#0e0d11 100%);
+	-fx-padding: 24px;
+	-fx-font-family: "Georgia";
+	-fx-font-size: 14px;
+}
+
+.coleccion-retro .label {
+	-fx-text-fill: #f1e2bd;
+}
+
+.coleccion-retro .titulo {
+	-fx-font-size: 36px;
+	-fx-font-weight: bold;
+	-fx-text-fill: #ffdf91;
+	-fx-effect: dropshadow(gaussian, #080604, 10, 0.35, 2, 3);
+}
+
+.coleccion-retro .contador {
+	-fx-text-fill: #d9ba7b;
+	-fx-font-size: 13px;
+}
+
+.coleccion-retro .mensaje {
+	-fx-text-fill: #ffe2a2;
+}
+
+.coleccion-retro .panel {
+	-fx-background-color: linear-gradient(to bottom, #33291d, #171518);
+	-fx-background-radius: 2px;
+	-fx-border-color: #ac864c, #534024;
+	-fx-border-width: 1px, 1px;
+	-fx-border-insets: 0px, 3px;
+	-fx-border-radius: 2px, 0px;
+	-fx-padding: 14px;
+	-fx-effect: dropshadow(gaussian, #080604, 10, 0.2, 0, 3);
+}
+
+.coleccion-retro .list-view {
+	-fx-background-color: #100f15;
+	-fx-background-insets: 0px;
+	-fx-border-color: #705535;
+	-fx-border-width: 1px;
+	-fx-padding: 2px;
+}
+
+.coleccion-retro .list-view:focused {
+	-fx-border-color: #d4ac5f;
+}
+
+.coleccion-retro .list-view .placeholder .label {
+	-fx-text-fill: #c7b17c;
+}
+
+.coleccion-retro .list-cell {
+	-fx-background-color: #100f15;
+	-fx-text-fill: #f2e5c9;
+	-fx-padding: 9px 12px;
+	-fx-border-width: 0 0 0 3px;
+	-fx-border-color: transparent;
+}
+
+.coleccion-retro .list-cell:filled:odd {
+	-fx-background-color: #1c181c;
+}
+
+.coleccion-retro .list-cell:filled:hover {
+	-fx-background-color: #3c3025;
+	-fx-border-color: #9f7a43;
+}
+
+.coleccion-retro .list-cell:filled:selected, .coleccion-retro .list-cell:filled:selected:hover
+	{
+	-fx-background-color: linear-gradient(to right, #283878 0%, #182549 65%, #171a2d 100%);
+	-fx-border-color: #f5cb76;
+	-fx-text-fill: #fff3cf;
+	-fx-font-weight: bold;
+}
+
+.coleccion-retro .marco-imagen {
+	-fx-background-color: linear-gradient(to bottom right, #f6d58c, #624522 54%, #bc9150),
+		#100e15;
+	-fx-background-insets: 0px, 4px;
+	-fx-background-radius: 2px, 0px;
+	-fx-border-color: #2b2015;
+	-fx-border-width: 1px;
+	-fx-padding: 8px;
+}
+
+.coleccion-retro .nombre-carta {
+	-fx-text-fill: #ffdf91;
+	-fx-font-size: 20px;
+	-fx-font-weight: bold;
+}
+
+.coleccion-retro .scroll-pane {
+	-fx-background-color: #15131a;
+	-fx-background-insets: 0px;
+	-fx-border-color: #705535;
+	-fx-border-width: 1px;
+}
+
+.coleccion-retro .scroll-pane>.viewport {
+	-fx-background-color: #15131a;
+}
+
+.coleccion-retro .scroll-pane .label {
+	-fx-text-fill: #e4d7bc;
+	-fx-padding: 8px 10px;
+}
+
+.coleccion-retro .panel:carta-poderosa {
+	-fx-border-color: linear-gradient(to bottom right, #d9f8ff, #b6aafa, #f6cddd, #f0e4ad,
+		#a3e8de), #625b7b;
+	-fx-effect: dropshadow(gaussian, #878fea, 14, 0.18, 0, 0);
+}
+
+.coleccion-retro .panel:carta-poderosa .marco-imagen {
+	-fx-background-color: linear-gradient(to bottom right, #8a95aa 0%, #ecfcff 16%, #aeb4ed 34%,
+		#f3c7e0 49%, #fbefbe 64%, #a5e5da 82%, #e2ebff 100%), #100e15;
+	-fx-border-color: #d8ddf2;
+}
+
+.coleccion-retro .panel:carta-poderosa .nombre-carta {
+	-fx-text-fill: #e8ecff;
+}
+
+.coleccion-retro .button {
+	-fx-background-color: linear-gradient(to bottom, #e7c27a, #75532c),
+		linear-gradient(to bottom, #564327, #302519);
+	-fx-background-insets: 0px, 2px;
+	-fx-background-radius: 2px, 0px;
+	-fx-border-color: #2e2115;
+	-fx-border-width: 1px;
+	-fx-text-fill: #fff1ca;
+	-fx-font-weight: bold;
+	-fx-padding: 9px 16px;
+	-fx-cursor: hand;
+}
+
+.coleccion-retro .button:hover, .coleccion-retro .button:focused {
+	-fx-background-color: linear-gradient(to bottom, #ffe2a0, #ab7839),
+		linear-gradient(to bottom, #354a87, #1e2a50);
+	-fx-text-fill: #fff7df;
+}
+
+.coleccion-retro .button:pressed {
+	-fx-background-color: #88643a, #30294c;
+}
+
+.coleccion-retro .button:disabled {
+	-fx-opacity: 0.45;
+	-fx-cursor: default;
+}
+
+.coleccion-retro .scroll-bar {
+	-fx-background-color: #171419;
+}
+
+.coleccion-retro .scroll-bar .track {
+	-fx-background-color: #231c1a;
+}
+
+.coleccion-retro .scroll-bar .thumb {
+	-fx-background-color: linear-gradient(to right, #735430, #b58d50);
+	-fx-background-radius: 2px;
+	-fx-background-insets: 2px;
+}
+
+.coleccion-retro .scroll-bar .increment-button, .coleccion-retro .scroll-bar .decrement-button
+	{
+	-fx-background-color: #30241b;
+}
+
+.coleccion-retro .scroll-bar .increment-arrow, .coleccion-retro .scroll-bar .decrement-arrow
+	{
+	-fx-background-color: #d6b578;
+}

@@ -22,7 +22,6 @@ public class JuegoApp extends Application {
         Scene escena = new Scene(new StackPane(), ANCHO, ALTO);
         Navegador navegador = new Navegador(escena);
         navegador.ir(new PantallaMenu(new ControladorMenu(navegador)));
-
         escenario.setTitle("Juego de cartas");
         escenario.setScene(escena);
         escenario.show();
