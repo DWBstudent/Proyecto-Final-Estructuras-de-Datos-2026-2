@@ -2,6 +2,7 @@ package co.edu.unbosque.modelo.entidades;
 
 import co.edu.unbosque.modelo.juego.Chest;
 import co.edu.unbosque.modelo.juego.Deck;
+import co.edu.unbosque.modelo.juego.Catalogo;
 
 /**
  * Representa al jugador de una partida. Administra su colección, registra las
@@ -32,7 +33,11 @@ public class Jugador {
 
 	/** Cantidad de rivales vencidos en el modo historia. */
 	private int rivalesVencidos;
-
+	/**
+	 * Contraseñas ya canjeadas, por ID de su carta. Cada carta tiene una sola
+	 * contraseña, así que basta un arreglo de 101 casillas. La posición 0 queda libre.
+	 */
+	private final boolean[] contrasenasCanjeadas = new boolean[Carta.ID_MAXIMO + 1];
 	/**
 	 * Crea un jugador con la colección vacía y sin avance en la campaña.
 	 * Complejidad: O(n) respecto a la longitud del nombre.
@@ -219,6 +224,50 @@ public class Jugador {
 	 */
 	public boolean completoModoHistoria() {
 		return rivalesVencidos == TOTAL_RIVALES;
+	}
+	
+	
+	/**
+	 * Canjea una contraseña. Si existe y no se ha usado, entrega una copia de su
+	 * carta al cofre. Cada contraseña sirve una sola vez. Si el jugador ya tiene 3
+	 * copias de la carta, la contraseña no se gasta y puede usarla después.
+	 * Complejidad: O(1) promedio, por las tablas hash del catálogo.
+	 *
+	 * @param contrasena texto escrito por la persona (se ignoran los espacios de los extremos)
+	 * @param catalogo   catálogo que traduce la contraseña al id de su carta
+	 * @return qué pasó con el canje
+	 * @throws IllegalArgumentException si el catálogo es nulo
+	 */
+	public ResultadoCanje canjearContrasena(String contrasena, Catalogo catalogo) {
+		if (catalogo == null) {
+			throw new IllegalArgumentException("Se necesita el catálogo para canjear contraseñas");
+		}
+
+		int idCarta = catalogo.idPorContrasena(contrasena);
+		if (idCarta == -1) {
+			return ResultadoCanje.NO_EXISTE;
+		}
+		if (contrasenasCanjeadas[idCarta]) {
+			return ResultadoCanje.YA_USADA;
+		}
+		if (!recibirCarta(catalogo.buscarPorId(idCarta))) {
+			return ResultadoCanje.SIN_ESPACIO;
+		}
+
+		contrasenasCanjeadas[idCarta] = true;
+		return ResultadoCanje.CANJEADA;
+	}
+
+	/**
+	 * Consulta si ya se canjeó la contraseña de una carta. Complejidad: O(1).
+	 *
+	 * @param idCarta ID de la carta
+	 * @return {@code true} si su contraseña ya se usó
+	 * @throws IllegalArgumentException si el ID está fuera del catálogo
+	 */
+	public boolean contrasenaCanjeada(int idCarta) {
+		validarId(idCarta);
+		return contrasenasCanjeadas[idCarta];
 	}
 
 	/**
