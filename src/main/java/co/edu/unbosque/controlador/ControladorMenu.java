@@ -17,6 +17,13 @@ import co.edu.unbosque.vista.PantallaInventario;
 import co.edu.unbosque.vista.PantallaProvisional;
 import co.edu.unbosque.modelo.entidades.ResultadoCanje;
 import co.edu.unbosque.vista.PantallaContrasenas;
+import java.io.UncheckedIOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Random;
+import co.edu.unbosque.modelo.persistencia.GuardadoPartida;
+import co.edu.unbosque.modelo.persistencia.PartidaInvalidaException;
+import co.edu.unbosque.vista.PantallaMenu;
 
 /**
  * Coordina las acciones del menú y de la colección. Consulta al jugador,
@@ -53,40 +60,100 @@ public class ControladorMenu {
 
 	/** Criterios disponibles, en el mismo orden que las opciones del selector. */
 	private final CriterioOrdenCarta[] criteriosOrden = CriterioOrdenCarta.values();
+	
+
+	/** Archivo donde se guarda la partida. */
+	private final Path archivoPartida;
+
+	/** Mensaje para mostrar la primera vez que aparece el menú (partida nueva, cargada o dañada). */
+	private String estadoPartida;
 
 	/**
-	 * Abre el juego con un jugador nuevo y el catálogo de {@code cartas.csv}.
-	 * Complejidad: O(n), con n = 100 cartas del catálogo.
+	 * Abre el juego con la partida guardada en la carpeta del usuario, o con una
+	 * nueva si no hay. Complejidad: O(n), con n = 100 cartas del catálogo.
 	 *
 	 * @param navegador navegador de la aplicación
 	 * @throws IllegalArgumentException si el navegador es nulo
 	 */
 	public ControladorMenu(Navegador navegador) {
-		this(navegador, new Jugador("Jugador"), Catalogo.cargar(), new Random());
+		this(navegador, Catalogo.cargar(), GuardadoPartida.archivoPorDefecto(), new Random());
 	}
 
 	/**
-	 * Conecta el menú con el jugador, el catálogo y la partida. Si el jugador no
-	 * tiene cartas, recibe el Deck inicial. Complejidad: O(1) más la entrega del
-	 * Deck inicial.
+	 * Conecta el menú con el catálogo, el archivo de la partida y la partida. Si el
+	 * jugador no tiene cartas, recibe el Deck inicial. Complejidad: O(n), con n
+	 * cartas de la partida guardada.
 	 *
-	 * @param navegador navegador de la aplicación
-	 * @param jugador   jugador activo de la partida
-	 * @param catalogo  las 100 cartas del juego
-	 * @param random    azar para barajar y elegir recompensas
+	 * @param navegador      navegador de la aplicación
+	 * @param catalogo       las 100 cartas del juego
+	 * @param archivoPartida archivo donde se guarda y se carga la partida
+	 * @param random         azar para barajar y elegir recompensas
 	 * @throws IllegalArgumentException si algún argumento es nulo
 	 */
-	public ControladorMenu(Navegador navegador, Jugador jugador, Catalogo catalogo, Random random) {
-		if (navegador == null || jugador == null || catalogo == null || random == null) {
-			throw new IllegalArgumentException("El menú necesita navegador, jugador, catálogo y Random");
+	public ControladorMenu(Navegador navegador, Catalogo catalogo, Path archivoPartida, Random random) {
+		if (navegador == null || catalogo == null || archivoPartida == null || random == null) {
+			throw new IllegalArgumentException("El menú necesita navegador, catálogo, archivo y Random");
 		}
 
 		this.navegador = navegador;
-		this.jugador = jugador;
 		this.catalogo = catalogo;
+		this.archivoPartida = archivoPartida;
+		this.jugador = cargarOCrearJugador();
 		this.editorColeccion = new EditorColeccion(jugador);
 		this.partida = new ControladorPartida(navegador, jugador, catalogo, random);
 		partida.entregarDeckInicialSiHaceFalta();
+	}
+
+	/**
+	 * Guarda la partida cada vez que el menú aparece: al abrir el juego y al volver
+	 * de un duelo, de un canje o de la colección. Complejidad: O(n), con n cartas.
+	 *
+	 * @param vista menú donde se muestra el resultado
+	 */
+	public void alVolverAlMenu(PantallaMenu vista) {
+		if (!guardarPartida()) {
+			vista.mostrarEstado("No se pudo guardar la partida.");
+			return;
+		}
+		vista.mostrarEstado(estadoPartida != null ? estadoPartida : "Partida guardada.");
+		estadoPartida = null;
+	}
+
+	/**
+	 * Guarda la partida en su archivo. También se llama al cerrar el juego.
+	 * Complejidad: O(n), con n cartas del jugador.
+	 *
+	 * @return {@code true} si se guardó
+	 */
+	public boolean guardarPartida() {
+		try {
+			GuardadoPartida.guardar(jugador, archivoPartida);
+			return true;
+		} catch (UncheckedIOException e) {
+			System.err.println(e.getMessage());
+			return false;
+		}
+	}
+
+	/**
+	 * Lee la partida guardada. Si no existe, o está dañada, empieza una nueva.
+	 *
+	 * @return jugador de la partida
+	 */
+	private Jugador cargarOCrearJugador() {
+		if (!Files.exists(archivoPartida)) {
+			estadoPartida = "Partida nueva.";
+			return new Jugador("Jugador");
+		}
+		try {
+			Jugador cargado = GuardadoPartida.cargar(archivoPartida, catalogo);
+			estadoPartida = "Partida cargada: " + cargado.getRivalesVencidos() + " de " + Jugador.TOTAL_RIVALES
+					+ " rivales vencidos.";
+			return cargado;
+		} catch (PartidaInvalidaException | UncheckedIOException e) {
+			estadoPartida = "La partida guardada estaba dañada (" + e.getMessage() + "). Empezaste una nueva.";
+			return new Jugador("Jugador");
+		}
 	}
 
 	/** Abre la selección de rival del modo historia. */

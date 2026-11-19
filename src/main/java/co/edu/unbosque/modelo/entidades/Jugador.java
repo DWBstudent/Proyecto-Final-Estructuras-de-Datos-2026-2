@@ -269,7 +269,20 @@ public class Jugador {
 		validarId(idCarta);
 		return contrasenasCanjeadas[idCarta];
 	}
-
+	
+	/**
+	 * Marca como usada la contraseña de una carta sin entregar la carta. Solo se usa
+	 * al cargar una partida guardada. Complejidad: O(1).
+	 *
+	 * @param idCarta ID de la carta
+	 * @throws IllegalArgumentException si el ID está fuera del catálogo
+	 */
+	public void marcarContrasenaCanjeada(int idCarta) {
+		validarId(idCarta);
+		contrasenasCanjeadas[idCarta] = true;
+	}
+	
+	
 	/**
 	 * Busca la primera carta con el ID indicado. Complejidad: O(n), con n elementos
 	 * en el arreglo.

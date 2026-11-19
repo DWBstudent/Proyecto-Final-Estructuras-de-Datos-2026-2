@@ -20,12 +20,15 @@ public class PantallaMenu implements Pantalla {
 	private static final double ANCHO_BOTON = 260;
 
     private final VBox raiz;
+    private final ControladorMenu controlador;
+    private final Label estado = new Label();
     
     
     public PantallaMenu(ControladorMenu controlador) {
         if (controlador == null) {
             throw new IllegalArgumentException("El menú necesita su controlador");
         }
+        this.controlador = controlador;
         Label titulo = new Label("Juego de cartas");
         titulo.setStyle("-fx-font-size: 36px; -fx-font-weight: bold;");
         VBox.setMargin(titulo, new Insets(0, 0, 24, 0));
@@ -38,7 +41,8 @@ public class PantallaMenu implements Pantalla {
                 boton("Chest y Deck", controlador::irAColeccion),
                 boton("Inventario", controlador::irAInventario),
                 boton("Contraseñas", controlador::irAContrasenas),
-                boton("Salir", Platform::exit));
+                boton("Salir", Platform::exit),
+                estado);
         raiz.setAlignment(Pos.CENTER);
         raiz.setPadding(new Insets(24));
     }
@@ -56,6 +60,17 @@ public class PantallaMenu implements Pantalla {
 	@Override
 	public Parent getVista() {
         return raiz;
+	}
+
+	/** Cada vez que aparece el menú, el controlador guarda la partida. */
+	@Override
+	public void alEntrar() {
+		controlador.alVolverAlMenu(this);
+	}
+
+	/** Muestra debajo de los botones si la partida se guardó o se cargó. */
+	public void mostrarEstado(String texto) {
+		estado.setText(texto);
 	}
 
 }
