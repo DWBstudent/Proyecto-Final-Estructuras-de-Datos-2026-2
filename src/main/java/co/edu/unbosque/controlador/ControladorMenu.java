@@ -15,6 +15,8 @@ import co.edu.unbosque.vista.PantallaColeccion;
 import co.edu.unbosque.vista.PantallaDeck;
 import co.edu.unbosque.vista.PantallaInventario;
 import co.edu.unbosque.vista.PantallaProvisional;
+import co.edu.unbosque.modelo.entidades.ResultadoCanje;
+import co.edu.unbosque.vista.PantallaContrasenas;
 
 /**
  * Coordina las acciones del menú y de la colección. Consulta al jugador,
@@ -128,7 +130,32 @@ public class ControladorMenu {
 
 	/** Abre la pantalla de contraseñas. Complejidad O(1). */
 	public void irAContrasenas() {
-		navegador.ir(new PantallaProvisional("Contraseñas", navegador));
+		navegador.ir(new PantallaContrasenas(this::canjearContrasena, navegador::volver));
+	}
+
+	/**
+	 * Intenta canjear lo que escribió la persona y elige el mensaje según el
+	 * resultado. Complejidad: O(1) promedio.
+	 *
+	 * @param vista pantalla de contraseñas
+	 * @param texto contraseña escrita
+	 */
+	private void canjearContrasena(PantallaContrasenas vista, String texto) {
+		ResultadoCanje resultado = jugador.canjearContrasena(texto, catalogo);
+		vista.mostrarCarta("", "", null);
+
+		switch (resultado) {
+		case CANJEADA -> {
+			Carta carta = catalogo.buscarPorId(catalogo.idPorContrasena(texto));
+			vista.mostrarCarta(carta.getNombre(), carta.getTipo().getNombreVisible() + " · ATK "
+					+ carta.getAtaque() + " · DEF " + carta.getDefensa(), carta.getRutaImagen());
+			vista.mostrarMensaje("¡Obtuviste " + carta.getNombre() + "! Quedó en tu cofre.");
+			vista.limpiarCampo();
+		}
+		case YA_USADA -> vista.mostrarMensaje("Esa contraseña ya la usaste.");
+		case SIN_ESPACIO -> vista.mostrarMensaje("Ya tienes 3 copias de esa carta. La contraseña no se gastó.");
+		case NO_EXISTE -> vista.mostrarMensaje("Esa contraseña no es de ninguna carta. Revisa los 8 dígitos.");
+		}
 	}
 
 	/**
