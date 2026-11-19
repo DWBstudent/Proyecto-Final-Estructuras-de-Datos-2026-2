@@ -2,6 +2,7 @@ package co.edu.unbosque.modelo.entidades;
 
 import co.edu.unbosque.modelo.juego.Chest;
 import co.edu.unbosque.modelo.juego.Deck;
+import co.edu.unbosque.modelo.juego.Catalogo;
 
 /**
  * Representa al jugador de una partida. Administra su colección, registra las
@@ -32,7 +33,8 @@ public class Jugador {
 
 	/** Cantidad de rivales vencidos en el modo historia. */
 	private int rivalesVencidos;
-
+	
+	private final boolean[] contrasenasCanjeadas = new boolean[Carta.ID_MAXIMO + 1];
 	/**
 	 * Crea un jugador con la colección vacía y sin avance en la campaña.
 	 * Complejidad: O(n) respecto a la longitud del nombre.
@@ -219,6 +221,38 @@ public class Jugador {
 	 */
 	public boolean completoModoHistoria() {
 		return rivalesVencidos == TOTAL_RIVALES;
+	}
+	
+	public ResultadoCanje canjearContrasena(String contrasena, Catalogo catalogo) {
+		if (catalogo == null) {
+			throw new IllegalArgumentException("Se necesita el catálogo para canjear contraseñas");
+		}
+
+		int idCarta = catalogo.idPorContrasena(contrasena);
+		if (idCarta == -1) {
+			return ResultadoCanje.NO_EXISTE;
+		}
+		if (contrasenasCanjeadas[idCarta]) {
+			return ResultadoCanje.YA_USADA;
+		}
+		if (!recibirCarta(catalogo.buscarPorId(idCarta))) {
+			return ResultadoCanje.SIN_ESPACIO;
+		}
+
+		contrasenasCanjeadas[idCarta] = true;
+		return ResultadoCanje.CANJEADA;
+	}
+
+	/**
+	 * Consulta si ya se canjeó la contraseña de una carta. Complejidad: O(1).
+	 *
+	 * @param idCarta ID de la carta
+	 * @return {@code true} si su contraseña ya se usó
+	 * @throws IllegalArgumentException si el ID está fuera del catálogo
+	 */
+	public boolean contrasenaCanjeada(int idCarta) {
+		validarId(idCarta);
+		return contrasenasCanjeadas[idCarta];
 	}
 
 	/**
