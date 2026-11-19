@@ -281,6 +281,8 @@ public class Jugador {
 		validarId(idCarta);
 		contrasenasCanjeadas[idCarta] = true;
 	}
+	
+	
 	/**
 	 * Busca la primera carta con el ID indicado. Complejidad: O(n), con n elementos
 	 * en el arreglo.
