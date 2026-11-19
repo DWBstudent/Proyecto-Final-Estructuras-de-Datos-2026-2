@@ -2,6 +2,8 @@ package co.edu.unbosque.modelo.juego;
 
 import co.edu.unbosque.modelo.entidades.Carta;
 import co.edu.unbosque.modelo.estructuras.ListaSimple;
+import co.edu.unbosque.modelo.ordenamiento.Comparador;
+import co.edu.unbosque.modelo.ordenamiento.InsertionSort;
 
 /**
  * Guarda las cartas elegidas por el jugador para su baraja personal. La baraja
@@ -132,5 +134,26 @@ public class Deck {
 		}
 
 		return cartasActuales();
+	}
+
+	/**
+	 * Ordena la baraja mediante Insertion Sort. Funciona con una baraja vacía,
+	 * incompleta o completa.
+	 *
+	 * <p>
+	 * Complejidad: O(n²) en el peor caso, suponiendo comparaciones de costo
+	 * constante. Usa O(n) de espacio para copiar la baraja.
+	 *
+	 * @param comparador criterio que se quiere aplicar
+	 * @throws IllegalArgumentException si el comparador es nulo
+	 */
+	public void ordenar(Comparador<Carta> comparador) {
+		Carta[] ordenadas = cartasActuales();
+		InsertionSort.ordenar(ordenadas, comparador);
+		cartas.vaciar();
+
+		for (Carta carta : ordenadas) {
+			cartas.agregarAlFinal(carta);
+		}
 	}
 }
