@@ -4,6 +4,8 @@
 	import co.edu.unbosque.vista.Pantalla;
 	import javafx.scene.Scene;
 	
+	import java.util.function.Consumer;
+	
 	/**
 	 * Cambia la pantalla que se ve. Guarda las pantallas anteriores en una {@link Pila},
 	 * así "volver" siempre lleva a la última pantalla visitada.
@@ -15,6 +17,8 @@
 	    private final Scene escena;
 	    private final Pila<Pantalla> historial = new Pila<>();
 	    private Pantalla actual;
+	    
+	    private Consumer<Pantalla> alCambiar = pantalla -> { };
 	
 	    /**
 	     * @throws IllegalArgumentException si la escena es {@code null}
@@ -62,7 +66,20 @@
 	        mostrar(historial.desapilar());
 	        return true;
 	    }
-	
+	    
+	    /**
+	     * Registra una acción que se ejecuta cada vez que cambia la pantalla. El menú la
+	     * usa para elegir la música. Complejidad: O(1).
+	     *
+	     * @throws IllegalArgumentException si la acción es {@code null}
+	     */
+	    public void alCambiarDePantalla(Consumer<Pantalla> accion) {
+	        if (accion == null) {
+	            throw new IllegalArgumentException("La acción no puede ser null");
+	        }
+	        alCambiar = accion;
+	    }
+	    
 	    public Pantalla getActual() {
 	        return actual;
 	    }
@@ -71,6 +88,7 @@
 	        actual = pantalla;
 	        pantalla.alEntrar();
 	        escena.setRoot(pantalla.getVista());
+	        alCambiar.accept(pantalla);
 	    }
 	
 	    private static void validar(Pantalla pantalla) {
