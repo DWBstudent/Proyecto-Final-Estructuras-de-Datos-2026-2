@@ -1,5 +1,7 @@
 package co.edu.unbosque.controlador;
 
+import java.util.Random;
+
 import co.edu.unbosque.modelo.entidades.Carta;
 import co.edu.unbosque.modelo.entidades.Direccion;
 import co.edu.unbosque.modelo.entidades.Jugador;
@@ -29,14 +31,17 @@ public class ControladorMenu {
 	/** Jugador cuya colección se muestra y modifica. */
 	private final Jugador jugador;
 
+	/** Las 100 cartas del juego. Se carga una sola vez y se comparte. */
+	private final Catalogo catalogo;
+
+	/** Controlador de los modos historia, libre y jugador contra jugador. */
+	private final ControladorPartida partida;
+
 	/** Editor que comparte el historial entre las pantallas Chest y Deck. */
 	private final EditorColeccion editorColeccion;
 
 	/** Cartas de la pantalla activa, en el mismo orden que sus filas. */
 	private Carta[] cartasVisibles = new Carta[0];
-
-	/** Catálogo consultado por el inventario. */
-	private Catalogo catalogoInventario;
 
 	/** Modelo que conserva el cursor y la navegación por el grafo. */
 	private Inventario inventario;
@@ -48,46 +53,53 @@ public class ControladorMenu {
 	private final CriterioOrdenCarta[] criteriosOrden = CriterioOrdenCarta.values();
 
 	/**
-	 * Abre el menú con un jugador inicial. Complejidad O(1) para el tamaño fijo del
-	 * catálogo.
+	 * Abre el juego con un jugador nuevo y el catálogo de {@code cartas.csv}.
+	 * Complejidad: O(n), con n = 100 cartas del catálogo.
 	 *
 	 * @param navegador navegador de la aplicación
 	 * @throws IllegalArgumentException si el navegador es nulo
 	 */
 	public ControladorMenu(Navegador navegador) {
-		this(navegador, new Jugador("Jugador"));
+		this(navegador, new Jugador("Jugador"), Catalogo.cargar(), new Random());
 	}
 
 	/**
-	 * Conecta el menú con el jugador de una partida. Complejidad O(1).
+	 * Conecta el menú con el jugador, el catálogo y la partida. Si el jugador no
+	 * tiene cartas, recibe el Deck inicial. Complejidad: O(1) más la entrega del
+	 * Deck inicial.
 	 *
 	 * @param navegador navegador de la aplicación
 	 * @param jugador   jugador activo de la partida
+	 * @param catalogo  las 100 cartas del juego
+	 * @param random    azar para barajar y elegir recompensas
 	 * @throws IllegalArgumentException si algún argumento es nulo
 	 */
-	public ControladorMenu(Navegador navegador, Jugador jugador) {
-		if (navegador == null || jugador == null) {
-			throw new IllegalArgumentException("El menú necesita un navegador y un jugador");
+	public ControladorMenu(Navegador navegador, Jugador jugador, Catalogo catalogo, Random random) {
+		if (navegador == null || jugador == null || catalogo == null || random == null) {
+			throw new IllegalArgumentException("El menú necesita navegador, jugador, catálogo y Random");
 		}
 
 		this.navegador = navegador;
 		this.jugador = jugador;
+		this.catalogo = catalogo;
 		this.editorColeccion = new EditorColeccion(jugador);
+		this.partida = new ControladorPartida(navegador, jugador, catalogo, random);
+		partida.entregarDeckInicialSiHaceFalta();
 	}
 
-	/** Abre la pantalla del modo historia. Complejidad O(1). */
+	/** Abre la selección de rival del modo historia. */
 	public void irAModoHistoria() {
-		navegador.ir(new PantallaProvisional("Modo Historia", navegador));
+		partida.abrirModoHistoria();
 	}
 
-	/** Abre la pantalla del modo libre. Complejidad O(1). */
+	/** Abre la selección de rival del modo libre. */
 	public void irAModoLibre() {
-		navegador.ir(new PantallaProvisional("Modo Libre", navegador));
+		partida.abrirModoLibre();
 	}
 
-	/** Abre la pantalla de jugador contra jugador. Complejidad O(1). */
+	/** Empieza un duelo de jugador contra jugador con Decks aleatorios. */
 	public void irAJugadorContraJugador() {
-		navegador.ir(new PantallaProvisional("JcJ", navegador));
+		partida.abrirJugadorContraJugador();
 	}
 
 	/**
@@ -102,19 +114,10 @@ public class ControladorMenu {
 	/**
 	 * Abre el inventario y conserva su cursor entre visitas. La primera apertura
 	 * construye el grafo y las 100 casillas.
-	 *
-	 * @throws IllegalArgumentException                                 si no se
-	 *                                                                  puede cargar
-	 *                                                                  el catálogo
-	 * @throws co.edu.unbosque.modelo.persistencia.CsvInvalidoException si el
-	 *                                                                  archivo de
-	 *                                                                  cartas es
-	 *                                                                  inválido
 	 */
 	public void irAInventario() {
 		if (pantallaInventario == null) {
-			catalogoInventario = new CatalogoCsv();
-			inventario = new Inventario(catalogoInventario);
+			inventario = new Inventario(catalogo);
 			pantallaInventario = new PantallaInventario(Inventario.FILAS, Inventario.COLUMNAS, this::cargarInventario,
 					this::seleccionarCasillaInventario, this::moverCursorInventario, this::buscarCartaSinDescubrir,
 					navegador::volver);
