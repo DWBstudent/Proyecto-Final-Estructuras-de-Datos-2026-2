@@ -93,15 +93,17 @@ public class ReproductorMusica {
         int i = pista.ordinal();
         if (reproductores[i] == null && !noDisponible[i]) {
             URL archivo = ReproductorMusica.class.getResource(pista.ruta);
+            if (archivo == null) {
+                noDisponible[i] = true;
+                System.err.println("El juego sigue sin música: no existe " + pista.ruta);
+                return null;
+            }
             try {
-                if (archivo == null) {
-                    throw new MediaException("no existe " + pista.ruta);
-                }
                 MediaPlayer nuevo = new MediaPlayer(new Media(archivo.toExternalForm()));
                 nuevo.setCycleCount(MediaPlayer.INDEFINITE);
                 nuevo.setVolume(VOLUMEN);
                 reproductores[i] = nuevo;
-            } catch (MediaException | UnsupportedOperationException e) {
+            } catch (MediaException | IllegalArgumentException | UnsupportedOperationException e) {
                 noDisponible[i] = true;
                 System.err.println("El juego sigue sin música: " + e.getMessage());
             }
