@@ -233,7 +233,7 @@ public class ControladorPartida {
      * Si el jugador no tiene ninguna carta, le da el Deck inicial: cada carta entra al Chest
      * (así queda descubierta) y pasa al Deck.
      */
-    private void entregarDeckInicialSiHaceFalta() {
+    public void entregarDeckInicialSiHaceFalta() {
         if (jugador.getChest().cartasDistintas() > 0 || jugador.getDeck().tamanio() > 0) {
             return;
         }
