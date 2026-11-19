@@ -1,28 +1,29 @@
 package co.edu.unbosque.controlador;
 
+import java.io.UncheckedIOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Random;
 
 import co.edu.unbosque.modelo.entidades.Carta;
 import co.edu.unbosque.modelo.entidades.Direccion;
 import co.edu.unbosque.modelo.entidades.Jugador;
+import co.edu.unbosque.modelo.entidades.ResultadoCanje;
 import co.edu.unbosque.modelo.juego.Catalogo;
 import co.edu.unbosque.modelo.juego.Deck;
 import co.edu.unbosque.modelo.juego.EditorColeccion;
 import co.edu.unbosque.modelo.juego.Inventario;
 import co.edu.unbosque.modelo.ordenamiento.CriterioOrdenCarta;
-import co.edu.unbosque.vista.PantallaChest;
-import co.edu.unbosque.vista.PantallaColeccion;
-import co.edu.unbosque.vista.PantallaDeck;
-import co.edu.unbosque.vista.PantallaInventario;
-import co.edu.unbosque.vista.PantallaProvisional;
-import co.edu.unbosque.modelo.entidades.ResultadoCanje;
-import co.edu.unbosque.vista.PantallaContrasenas;
-import java.io.UncheckedIOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.Random;
 import co.edu.unbosque.modelo.persistencia.GuardadoPartida;
 import co.edu.unbosque.modelo.persistencia.PartidaInvalidaException;
+import co.edu.unbosque.vista.Pantalla;
+import co.edu.unbosque.vista.PantallaCambioTurno;
+import co.edu.unbosque.vista.PantallaChest;
+import co.edu.unbosque.vista.PantallaColeccion;
+import co.edu.unbosque.vista.PantallaContrasenas;
+import co.edu.unbosque.vista.PantallaDeck;
+import co.edu.unbosque.vista.PantallaDuelo;
+import co.edu.unbosque.vista.PantallaInventario;
 import co.edu.unbosque.vista.PantallaMenu;
 
 /**
@@ -67,6 +68,10 @@ public class ControladorMenu {
 
 	/** Mensaje para mostrar la primera vez que aparece el menú (partida nueva, cargada o dañada). */
 	private String estadoPartida;
+	
+
+	/** Música de fondo: una pista para el menú y otra para el duelo. */
+	private final ReproductorMusica musica = new ReproductorMusica();
 
 	/**
 	 * Abre el juego con la partida guardada en la carpeta del usuario, o con una
@@ -102,6 +107,28 @@ public class ControladorMenu {
 		this.editorColeccion = new EditorColeccion(jugador);
 		this.partida = new ControladorPartida(navegador, jugador, catalogo, random);
 		partida.entregarDeckInicialSiHaceFalta();
+		navegador.alCambiarDePantalla(this::elegirMusica);
+	}
+	
+
+	/**
+	 * Elige la música según la pantalla: la del duelo durante el duelo y el cambio de
+	 * turno; la del menú en todas las demás. Complejidad: O(1).
+	 *
+	 * @param pantalla pantalla que se acaba de mostrar
+	 */
+	private void elegirMusica(Pantalla pantalla) {
+		boolean enDuelo = pantalla instanceof PantallaDuelo || pantalla instanceof PantallaCambioTurno;
+		musica.tocar(enDuelo ? ReproductorMusica.Pista.DUELO : ReproductorMusica.Pista.MENU);
+	}
+
+	/**
+	 * Prende o apaga la música. Complejidad: O(1).
+	 *
+	 * @return {@code true} si la música quedó encendida
+	 */
+	public boolean alternarMusica() {
+		return !musica.alternarSilencio();
 	}
 
 	/**

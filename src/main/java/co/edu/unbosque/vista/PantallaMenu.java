@@ -32,6 +32,10 @@ public class PantallaMenu implements Pantalla {
         Label titulo = new Label("Juego de cartas");
         titulo.setStyle("-fx-font-size: 36px; -fx-font-weight: bold;");
         VBox.setMargin(titulo, new Insets(0, 0, 24, 0));
+        
+
+        Button musica = boton("Música: sí", () -> { });
+        musica.setOnAction(evento -> musica.setText(controlador.alternarMusica() ? "Música: sí" : "Música: no"));
 
         raiz = new VBox(12,
                 titulo,
@@ -41,6 +45,7 @@ public class PantallaMenu implements Pantalla {
                 boton("Chest y Deck", controlador::irAColeccion),
                 boton("Inventario", controlador::irAInventario),
                 boton("Contraseñas", controlador::irAContrasenas),
+                musica,
                 boton("Salir", Platform::exit),
                 estado);
         raiz.setAlignment(Pos.CENTER);
