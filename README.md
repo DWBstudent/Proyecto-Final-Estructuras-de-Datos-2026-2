@@ -153,6 +153,25 @@ Debe abrirse una ventana que dice **"Juego de cartas"**. Las siguientes veces, u
 
 **Opción B:** abre `src/main/java/co/edu/unbosque/Main.java`, clic derecho → **Run As → Java Application**. También funciona; si en la consola sale el aviso `Unsupported JavaFX configuration`, es normal y se puede ignorar.
 
+
+### 6.1 Ejecutable (sin Eclipse)
+
+Requisito: **Java 25 o superior** (revisa con `java -version`).
+
+1. Descarga `JuegoDeCartas.jar` de la sección **Releases** del repositorio (versión v1.0).
+2. Ábrelo con doble clic, o en una terminal: `java -jar JuegoDeCartas.jar`
+
+Para generarlo desde el código: en Eclipse, **Run As → Maven build…** con Goals `package`. Queda en `target/JuegoDeCartas.jar`. El otro archivo, `juego-de-cartas-1.0-SNAPSHOT.jar`, no sirve para jugar porque no trae JavaFX.
+
+### 6.2 Probar la carga con el guardado de ejemplo
+
+El juego carga la partida solo al abrirse, desde `partida.txt` en la carpeta `.juego-de-cartas` del usuario. La guarda cada vez que se vuelve al menú y al cerrar.
+
+1. Cierra el juego.
+2. Copia `ejemplos/partida.txt` a `C:\Users\<tu usuario>\.juego-de-cartas\partida.txt`. En el Explorador de Windows puedes escribir `%USERPROFILE%\.juego-de-cartas` en la barra de direcciones; si la carpeta no existe, créala. Si ya tenías una partida, cópiala antes a otro lugar.
+3. Abre el juego. Debajo de los botones debe decir **"Partida cargada: 2 de 3 rivales vencidos."**
+
+La partida de ejemplo tiene 2 rivales vencidos (el Rey Sombrío queda disponible en el modo historia), un Deck de 40 cartas, 14 en el cofre, 54 cartas descubiertas y 12 contraseñas ya usadas.
 ---
 
 ## 7. Cómo está organizado el código
