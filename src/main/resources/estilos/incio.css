@@ -1,0 +1,181 @@
+/*
+ * incio.css
+ *
+ * Apariencia del menú principal.
+ *
+ * El video se administra desde PantallaMenu mediante MediaView.
+ * Esta hoja define únicamente la presentación de la interfaz.
+ *
+ * Estilo:
+ *   - Fondo negro de respaldo.
+ *   - Sombra negra sobre el video.
+ *   - Título dorado.
+ *   - Botones de piedra con biseles.
+ *
+ * Todos los selectores están limitados a .inicio-retro.
+ */
+
+/* ==========================================================
+   CONTENEDOR PRINCIPAL
+   ========================================================== */
+.inicio-retro {
+	-fx-background-color: #000000;
+	-fx-font-family: "Georgia";
+	-fx-font-size: 15px;
+}
+
+.inicio-retro .inicio-video {
+	-fx-background-color: #000000;
+}
+
+/* ==========================================================
+   SOMBRA SOBRE EL VIDEO
+   ========================================================== */
+
+/*
+ * Mantiene visible la animación y oscurece los bordes.
+ * No modifica la opacidad de los botones.
+ */
+.inicio-retro .inicio-velo {
+	-fx-background-color: radial-gradient(center 50% 45%, radius 85%, rgba(0, 0, 0, 0.28)
+		0%, rgba(0, 0, 0, 0.48) 60%, rgba(0, 0, 0, 0.82) 100%);
+}
+
+/* ==========================================================
+   CONTENIDO DEL MENÚ
+   ========================================================== */
+.inicio-retro .inicio-contenido {
+	-fx-spacing: 10;
+	-fx-alignment: center;
+	-fx-padding: 14;
+}
+
+.inicio-retro .inicio-titulo {
+	-fx-font-family: "Georgia";
+	-fx-font-size: 38px;
+	-fx-font-weight: bold;
+	-fx-text-fill: #ffe3a0;
+	-fx-alignment: center;
+	-fx-text-alignment: center;
+	-fx-padding: 0 0 15 0;
+	-fx-effect: dropshadow(gaussian, #000000, 8, 0.80, 2, 3);
+}
+
+/* ==========================================================
+   BOTONES DE PIEDRA
+   ========================================================== */
+.inicio-retro .boton-piedra {
+	-fx-font-family: "Verdana";
+	-fx-font-size: 16px;
+	-fx-font-weight: bold;
+	-fx-text-fill: #fff0cf;
+	-fx-alignment: center;
+	-fx-cursor: hand;
+	-fx-min-height: 46;
+	-fx-padding: 11 22 11 22;
+	/*
+     * Capas del bisel:
+     *   1. Contorno oscuro.
+     *   2. Borde iluminado.
+     *   3. Borde interior.
+     *   4. Superficie de piedra.
+     */
+	-fx-background-color: #100e0b, #c4ae80, #51422e,
+		linear-gradient(to bottom, #9e8764 0%, #796144 48%, #55442f 100%);
+	-fx-background-insets: 0, 2, 4, 6;
+	-fx-background-radius: 2, 1, 0, 0;
+	/* Espacio reservado para el foco de teclado. */
+	-fx-border-color: transparent;
+	-fx-border-width: 2;
+	-fx-border-insets: 0;
+	-fx-border-radius: 2;
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.80), 8, 0.30, 0, 4);
+}
+
+.inicio-retro .boton-piedra:hover {
+	-fx-text-fill: #ffffff;
+	-fx-background-color: #201707, #ffe6a0, #8a6537,
+		linear-gradient(to bottom, #c9a36b, #82603b);
+	-fx-effect: dropshadow(gaussian, rgba(245, 192, 86, 0.50), 14, 0.25, 0,
+		0);
+}
+
+.inicio-retro .boton-piedra:focused {
+	-fx-border-color: #fff0ba;
+}
+
+.inicio-retro .boton-piedra:pressed {
+	-fx-text-fill: #fff4d9;
+	-fx-background-color: #100d08, #765e3b, #3c2e1b,
+		linear-gradient(to bottom, #594026, #8d6a3d);
+	-fx-effect: innershadow(gaussian, rgba(0, 0, 0, 0.75), 7, 0.25, 0, 3);
+}
+
+.inicio-retro .boton-piedra:disabled {
+	-fx-opacity: 1;
+	-fx-cursor: default;
+	-fx-text-fill: #b8b3a5;
+	-fx-background-color: #141414, #70695b, #37332c,
+		linear-gradient(to bottom, #625b4d, #3e392f);
+	-fx-border-color: transparent;
+	-fx-effect: none;
+}
+
+/* ==========================================================
+   INFORMACIÓN DE LA PARTIDA
+   ========================================================== */
+.inicio-retro .inicio-estado {
+	-fx-font-family: "Verdana";
+	-fx-font-size: 12px;
+	-fx-text-fill: #f0dfb5;
+	-fx-alignment: center;
+	-fx-text-alignment: center;
+	-fx-padding: 6 4 0 4;
+	-fx-effect: dropshadow(gaussian, #000000, 5, 0.80, 1, 2);
+}
+
+.inicio-retro .inicio-aviso-video {
+	-fx-font-family: "Verdana";
+	-fx-font-size: 11px;
+	-fx-text-fill: #e0ba80;
+	-fx-alignment: center;
+	-fx-text-alignment: center;
+}
+
+/* ==========================================================
+   DESPLAZAMIENTO PARA VENTANAS PEQUEÑAS
+   ========================================================== */
+.inicio-retro .inicio-scroll, .inicio-retro .inicio-scroll>.viewport {
+	-fx-background-color: transparent;
+}
+
+.inicio-retro .inicio-scroll {
+	-fx-background-insets: 0;
+	-fx-padding: 0;
+	-fx-border-width: 0;
+}
+
+.inicio-retro .inicio-scroll>.corner, .inicio-retro .inicio-scroll .scroll-bar
+	{
+	-fx-background-color: #080808;
+}
+
+.inicio-retro .inicio-scroll .scroll-bar .track {
+	-fx-background-color: #171717;
+	-fx-background-radius: 0;
+}
+
+.inicio-retro .inicio-scroll .scroll-bar .thumb {
+	-fx-background-color: linear-gradient(to right, #665335, #ad8b50, #665335);
+	-fx-background-radius: 2;
+}
+
+.inicio-retro .inicio-scroll .scroll-bar .increment-button,
+	.inicio-retro .inicio-scroll .scroll-bar .decrement-button {
+	-fx-background-color: #25221b;
+}
+
+.inicio-retro .inicio-scroll .scroll-bar .increment-arrow, .inicio-retro .inicio-scroll .scroll-bar .decrement-arrow
+	{
+	-fx-background-color: #d9bd7e;
+}

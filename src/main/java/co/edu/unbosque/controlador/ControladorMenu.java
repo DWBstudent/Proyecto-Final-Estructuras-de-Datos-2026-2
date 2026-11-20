@@ -25,6 +25,7 @@ import co.edu.unbosque.vista.PantallaDeck;
 import co.edu.unbosque.vista.PantallaDuelo;
 import co.edu.unbosque.vista.PantallaInventario;
 import co.edu.unbosque.vista.PantallaMenu;
+import javafx.application.Platform;
 
 /**
  * Coordina las acciones del menú y de la colección. Consulta al jugador,
@@ -61,14 +62,15 @@ public class ControladorMenu {
 
 	/** Criterios disponibles, en el mismo orden que las opciones del selector. */
 	private final CriterioOrdenCarta[] criteriosOrden = CriterioOrdenCarta.values();
-	
 
 	/** Archivo donde se guarda la partida. */
 	private final Path archivoPartida;
 
-	/** Mensaje para mostrar la primera vez que aparece el menú (partida nueva, cargada o dañada). */
+	/**
+	 * Mensaje para mostrar la primera vez que aparece el menú (partida nueva,
+	 * cargada o dañada).
+	 */
 	private String estadoPartida;
-	
 
 	/** Música de fondo: una pista para el menú y otra para el duelo. */
 	private final ReproductorMusica musica = new ReproductorMusica();
@@ -109,11 +111,10 @@ public class ControladorMenu {
 		partida.entregarDeckInicialSiHaceFalta();
 		navegador.alCambiarDePantalla(this::elegirMusica);
 	}
-	
 
 	/**
-	 * Elige la música según la pantalla: la del duelo durante el duelo y el cambio de
-	 * turno; la del menú en todas las demás. Complejidad: O(1).
+	 * Elige la música según la pantalla: la del duelo durante el duelo y el cambio
+	 * de turno; la del menú en todas las demás. Complejidad: O(1).
 	 *
 	 * @param pantalla pantalla que se acaba de mostrar
 	 */
@@ -241,8 +242,9 @@ public class ControladorMenu {
 		switch (resultado) {
 		case CANJEADA -> {
 			Carta carta = catalogo.buscarPorId(catalogo.idPorContrasena(texto));
-			vista.mostrarCarta(carta.getNombre(), carta.getTipo().getNombreVisible() + " · ATK "
-					+ carta.getAtaque() + " · DEF " + carta.getDefensa(), carta.getRutaImagen());
+			vista.mostrarCarta(carta.getNombre(),
+					carta.getTipo().getNombreVisible() + " · ATK " + carta.getAtaque() + " · DEF " + carta.getDefensa(),
+					carta.getRutaImagen());
 			vista.mostrarMensaje("¡Obtuviste " + carta.getNombre() + "! Quedó en tu cofre.");
 			vista.limpiarCampo();
 		}
@@ -689,5 +691,21 @@ public class ControladorMenu {
 		}
 
 		vista.mostrarMensaje("Actualiza el cofre para mostrar la carta encontrada.");
+	}
+
+	/**
+	 * Construye el menú principal y conecta sus eventos.
+	 *
+	 * <p>
+	 * La vista recibe funciones para comunicar las acciones del usuario, sin
+	 * depender directamente de esta clase.
+	 *
+	 * @return menú principal con sus acciones configuradas
+	 */
+	public PantallaMenu crearPantallaMenu() {
+		PantallaMenu.Acciones acciones = new PantallaMenu.Acciones(this::alVolverAlMenu, this::irAModoHistoria,
+				this::irAModoLibre, this::irAJugadorContraJugador, this::irAColeccion, this::irAInventario,
+				this::irAContrasenas, this::alternarMusica, Platform::exit);
+		return new PantallaMenu(acciones);
 	}
 }

@@ -1,0 +1,144 @@
+/*
+ * resultado.css
+ *
+ * Pantalla de resultado del duelo.
+ * Fondo con imagen, recuadro negro y detalles dorados.
+ *
+ * Imagen requerida:
+ * src/main/resources/imagenes/fondo-resultado.jpg
+ */
+
+/* ==========================================================
+   FONDO GENERAL
+   ========================================================== */
+.resultado-retro {
+	-fx-font-family: "Verdana";
+	-fx-font-size: 15px;
+	-fx-background-color: #000000;
+	-fx-background-image: url("../imagenes/fondo-resultado.jpg");
+	-fx-background-repeat: no-repeat;
+	-fx-background-position: center center;
+	-fx-background-size: cover;
+}
+
+/* Sombra independiente: no oscurece los controles. */
+.resultado-retro .resultado-velo {
+	-fx-background-color: radial-gradient(center 50% 45%, radius 85%, rgba(0, 0, 0, 0.20)
+		0%, rgba(0, 0, 0, 0.48) 65%, rgba(0, 0, 0, 0.85) 100%);
+}
+
+/* ==========================================================
+   RECUADRO NEGRO
+   ========================================================== */
+.resultado-retro .resultado-panel {
+	-fx-alignment: center;
+	-fx-spacing: 25;
+	-fx-padding: 36;
+	/*
+     * Las primeras capas construyen el marco.
+     * La última es el interior negro del recuadro.
+     */
+	-fx-background-color: #080705, #ad8b50, #403320, #000000;
+	-fx-background-insets: 0, 2, 4, 6;
+	-fx-background-radius: 3, 2, 1, 0;
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.90), 30, 0.35, 0, 10);
+}
+
+/* ==========================================================
+   TÍTULO Y ESTADÍSTICAS
+   ========================================================== */
+.resultado-retro .resultado-titulo {
+	-fx-font-family: "Georgia";
+	-fx-font-size: 42px;
+	-fx-font-weight: bold;
+	-fx-text-fill: #ffe3a0;
+	-fx-alignment: center;
+	-fx-text-alignment: center;
+	-fx-effect: dropshadow(gaussian, rgba(221, 164, 57, 0.35), 12, 0.20, 0,
+		0);
+}
+
+.resultado-retro .resultado-detalles {
+	-fx-alignment: center;
+	-fx-spacing: 14;
+	-fx-padding: 8 4;
+}
+
+.resultado-retro .resultado-linea {
+	-fx-font-family: "Verdana";
+	-fx-font-size: 16px;
+	-fx-text-fill: #f0e4c9;
+	-fx-alignment: center;
+	-fx-text-alignment: center;
+	-fx-line-spacing: 4;
+}
+
+/* ==========================================================
+   BOTÓN DE PIEDRA
+   ========================================================== */
+.resultado-retro .boton-piedra {
+	-fx-font-family: "Verdana";
+	-fx-font-size: 16px;
+	-fx-font-weight: bold;
+	-fx-text-fill: #fff0cf;
+	-fx-alignment: center;
+	-fx-cursor: hand;
+	-fx-min-height: 48;
+	-fx-padding: 13 26;
+	-fx-background-color: #100e0b, #c4ae80, #51422e,
+		linear-gradient(to bottom, #9e8764 0%, #796144 48%, #55442f 100%);
+	-fx-background-insets: 0, 2, 4, 6;
+	-fx-background-radius: 2, 1, 0, 0;
+	-fx-border-color: transparent;
+	-fx-border-width: 2;
+	-fx-border-radius: 2;
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 7, 0.20, 0, 3);
+}
+
+.resultado-retro .boton-piedra:hover {
+	-fx-text-fill: #ffffff;
+	-fx-background-color: #201707, #ffe6a0, #8a6537,
+		linear-gradient(to bottom, #c9a36b, #82603b);
+	-fx-effect: dropshadow(gaussian, rgba(245, 192, 86, 0.45), 12, 0.25, 0,
+		0);
+}
+
+.resultado-retro .boton-piedra:focused {
+	-fx-border-color: #fff0ba;
+}
+
+.resultado-retro .boton-piedra:pressed {
+	-fx-background-color: #100d08, #765e3b, #3c2e1b,
+		linear-gradient(to bottom, #594026, #8d6a3d);
+	-fx-effect: innershadow(gaussian, rgba(0, 0, 0, 0.70), 7, 0.25, 0, 3);
+}
+
+/* ==========================================================
+   DESPLAZAMIENTO PARA VENTANAS PEQUEÑAS
+   ========================================================== */
+.resultado-retro .resultado-scroll, .resultado-retro .resultado-scroll>.viewport
+	{
+	-fx-background-color: transparent;
+}
+
+.resultado-retro .resultado-scroll {
+	-fx-background-insets: 0;
+	-fx-padding: 0;
+	-fx-border-width: 0;
+}
+
+.resultado-retro .resultado-scroll>.corner, .resultado-retro .resultado-scroll .scroll-bar,
+	.resultado-retro .resultado-scroll .scroll-bar .track, .resultado-retro .resultado-scroll .scroll-bar .increment-button,
+	.resultado-retro .resultado-scroll .scroll-bar .decrement-button {
+	-fx-background-color: #000000;
+}
+
+.resultado-retro .resultado-scroll .scroll-bar .thumb {
+	-fx-background-color: #8d754b;
+	-fx-background-radius: 2;
+}
+
+.resultado-retro .resultado-scroll .scroll-bar .increment-arrow,
+	.resultado-retro .resultado-scroll .scroll-bar .decrement-arrow {
+	-fx-background-color: #ddc492;
+}
