@@ -22,3 +22,5 @@ hs_err_pid*
 # Partidas guardadas mientras se prueba
 partida*.txt
 partida*.tmp
+
+!ejemplos/partida.txt
