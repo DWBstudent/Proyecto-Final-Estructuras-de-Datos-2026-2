@@ -1,6 +1,5 @@
 package co.edu.unbosque;
 
-import co.edu.unbosque.vista.JuegoApp;
 import javafx.application.Application;
 
 /**

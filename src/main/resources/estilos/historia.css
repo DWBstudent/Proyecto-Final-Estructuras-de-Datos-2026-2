@@ -1,0 +1,378 @@
+/*
+ * historia.css
+ *
+ * Tema retro para la selección de rivales.
+ *
+ * Inspiración visual:
+ *   - Piedra tallada y marcos con biseles.
+ *   - Tonos de arena, bronce y oro.
+ *   - Rivales bloqueados con acabado gris azulado.
+ *
+ * Imagen requerida:
+ *   src/main/resources/imagenes/fondo-historia.jpg
+ *
+ * La ruta de la imagen es relativa a este archivo CSS.
+ *
+ * Los selectores están limitados a .historia-retro para evitar
+ * modificar accidentalmente otras pantallas del juego.
+ */
+
+/* ==========================================================
+   FONDO GENERAL
+   ========================================================== */
+.historia-retro {
+	-fx-font-family: "Georgia";
+	-fx-font-size: 15px;
+	/* Color de respaldo mientras se carga la imagen. */
+	-fx-background-color: #091812;
+	-fx-background-image: url("../imagenes/fondo-historia.jpg");
+	-fx-background-repeat: no-repeat;
+	-fx-background-position: center center;
+	-fx-background-size: cover;
+}
+
+/*
+ * Capa independiente sobre la imagen.
+ * Oscurece los bordes y conserva mayor claridad en el centro.
+ */
+.historia-retro .historia-velo {
+	-fx-background-color: radial-gradient(center 50% 42%, radius 80%, rgba(5, 12, 10, 0.35)
+		0%, rgba(4, 10, 8, 0.66) 65%, rgba(2, 5, 4, 0.92) 100%);
+}
+
+/* ==========================================================
+   CONTENEDOR CON DESPLAZAMIENTO
+   ========================================================== */
+.historia-retro .historia-scroll, .historia-retro .historia-scroll>.viewport
+	{
+	-fx-background-color: transparent;
+}
+
+.historia-retro .historia-scroll {
+	-fx-background-insets: 0;
+	-fx-padding: 0;
+	-fx-border-width: 0;
+}
+
+.historia-retro .historia-scroll>.corner {
+	-fx-background-color: #101610;
+}
+
+.historia-retro .historia-scroll .scroll-bar {
+	-fx-background-color: #101610;
+}
+
+.historia-retro .historia-scroll .scroll-bar .track {
+	-fx-background-color: #172019;
+	-fx-background-radius: 0;
+}
+
+.historia-retro .historia-scroll .scroll-bar .thumb {
+	-fx-background-color: linear-gradient(to right, #665335, #ad8b50, #665335);
+	-fx-background-radius: 2;
+}
+
+.historia-retro .historia-scroll .scroll-bar .increment-button,
+	.historia-retro .historia-scroll .scroll-bar .decrement-button {
+	-fx-background-color: #25281d;
+}
+
+.historia-retro .historia-scroll .scroll-bar .increment-arrow,
+	.historia-retro .historia-scroll .scroll-bar .decrement-arrow {
+	-fx-background-color: #d9bd7e;
+}
+
+/* ==========================================================
+   PANEL CENTRAL
+   ========================================================== */
+.historia-retro .historia-panel {
+	-fx-padding: 30 28 28 28;
+	-fx-spacing: 20;
+	-fx-alignment: center;
+	-fx-background-color: #0c0d09, #92723e, #27261b,
+		linear-gradient(to bottom, rgba(23, 39, 29, 0.95),
+		rgba(10, 23, 18, 0.97));
+	-fx-background-insets: 0, 2, 4, 6;
+	-fx-background-radius: 3, 2, 1, 0;
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.85), 28, 0.30, 0, 10);
+}
+
+.historia-retro .label {
+	-fx-text-fill: #f1e4c3;
+}
+
+.historia-retro .historia-titulo {
+	-fx-font-size: 36px;
+	-fx-font-weight: bold;
+	-fx-text-fill: #ffe3a0;
+	-fx-alignment: center;
+	-fx-text-alignment: center;
+	-fx-effect: dropshadow(gaussian, #000000, 5, 0.75, 2, 3);
+}
+
+.historia-retro .historia-descripcion {
+	-fx-font-family: "Verdana";
+	-fx-font-size: 14px;
+	-fx-text-fill: #d6d7bd;
+	-fx-text-alignment: center;
+	-fx-alignment: center;
+	-fx-line-spacing: 3;
+}
+
+.historia-retro .historia-filas {
+	-fx-spacing: 14;
+}
+
+/* ==========================================================
+   FILAS DE RIVALES
+   ========================================================== */
+
+/* Piedra base con un borde oscuro y un bisel interior. */
+.historia-retro .fila-rival {
+	-fx-alignment: center-left;
+	-fx-spacing: 16;
+	-fx-padding: 13 16 13 13;
+	-fx-background-color: #11100c, #5f5038, #cfb785,
+		linear-gradient(to bottom, #bcaa85 0%, #a18e6b 48%, #8c7858 100%);
+	-fx-background-insets: 0, 2, 4, 6;
+	-fx-background-radius: 2, 1, 0, 0;
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.70), 8, 0.25, 0, 4);
+}
+
+.historia-retro .rival-nombre {
+	-fx-font-family: "Verdana";
+	-fx-font-size: 18px;
+	-fx-font-weight: bold;
+	-fx-text-fill: #20180e;
+}
+
+.historia-retro .rival-estado {
+	-fx-font-family: "Verdana";
+	-fx-font-size: 13px;
+	-fx-font-weight: bold;
+	-fx-text-fill: #332d20;
+}
+
+/* ==========================================================
+   INSIGNIAS
+   ========================================================== */
+.historia-retro .rival-insignia {
+	-fx-min-width: 54;
+	-fx-pref-width: 54;
+	-fx-max-width: 54;
+	-fx-min-height: 54;
+	-fx-pref-height: 54;
+	-fx-max-height: 54;
+	-fx-alignment: center;
+	-fx-font-family: "Segoe UI Symbol";
+	-fx-font-size: 27px;
+	-fx-font-weight: bold;
+	-fx-text-fill: #ffe2a0;
+	-fx-background-color: #10100d, #d3b46d, #443621,
+		linear-gradient(to bottom, #745733, #2e281e);
+	-fx-background-insets: 0, 2, 4, 6;
+	-fx-background-radius: 2, 1, 0, 0;
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.65), 5, 0.20, 0, 2);
+}
+
+/* ==========================================================
+   SIGUIENTE RIVAL
+   ========================================================== */
+
+/*
+ * La fila conserva su identidad dorada aunque el controlador
+ * deshabilite el duelo porque falta completar el Deck.
+ */
+.historia-retro .rival-siguiente {
+	-fx-background-color: #171006, #9b6b28, #fff0b0,
+		linear-gradient(to bottom, #ffe6a2 0%, #e4bc70 47%, #c4934e 100%);
+	-fx-effect: dropshadow(gaussian, rgba(255, 194, 76, 0.40), 16, 0.20, 0,
+		0);
+}
+
+.historia-retro .rival-siguiente .rival-nombre {
+	-fx-text-fill: #271909;
+}
+
+.historia-retro .rival-siguiente .rival-estado {
+	-fx-text-fill: #21461f;
+}
+
+.historia-retro .rival-siguiente .rival-insignia {
+	-fx-text-fill: #fff8d2;
+	-fx-background-color: #251706, #ffe7a0, #936021,
+		linear-gradient(to bottom, #e1a445, #775021);
+}
+
+/* ==========================================================
+   RIVAL VENCIDO
+   ========================================================== */
+.historia-retro .rival-vencido {
+	-fx-background-color: #15110e, #685238, #b19b74,
+		linear-gradient(to bottom, #a18b66, #796449);
+}
+
+.historia-retro .rival-vencido .rival-nombre {
+	-fx-text-fill: #241c13;
+}
+
+.historia-retro .rival-vencido .rival-estado {
+	-fx-text-fill: #5c2118;
+}
+
+.historia-retro .rival-vencido .rival-insignia {
+	-fx-text-fill: #edd0a0;
+	-fx-background-color: #160e0b, #a78b5b, #482b20,
+		linear-gradient(to bottom, #793b2c, #3e231e);
+}
+
+/* ==========================================================
+   RIVAL BLOQUEADO
+   ========================================================== */
+.historia-retro .rival-bloqueado {
+	-fx-background-color: #0c1014, #3b4650, #85918f,
+		linear-gradient(to bottom, #76817f, #4e5a5b);
+}
+
+.historia-retro .rival-bloqueado .rival-nombre {
+	-fx-text-fill: #162126;
+}
+
+.historia-retro .rival-bloqueado .rival-estado {
+	-fx-text-fill: #202d35;
+}
+
+.historia-retro .rival-bloqueado .rival-insignia {
+	-fx-text-fill: #acb7b6;
+	-fx-background-color: #0a1017, #74818c, #2a3641,
+		linear-gradient(to bottom, #394d5e, #182530);
+}
+
+/* ==========================================================
+   BOTONES DE PIEDRA
+   ========================================================== */
+.historia-retro .boton-piedra {
+	-fx-font-family: "Verdana";
+	-fx-font-size: 16px;
+	-fx-font-weight: bold;
+	-fx-text-fill: #fff0cf;
+	-fx-alignment: center;
+	-fx-padding: 13 24 13 24;
+	-fx-cursor: hand;
+	-fx-background-color: #100e0b, #c4ae80, #51422e,
+		linear-gradient(to bottom, #9e8764 0%, #796144 48%, #55442f 100%);
+	-fx-background-insets: 0, 2, 4, 6;
+	-fx-background-radius: 2, 1, 0, 0;
+	/*
+     * Borde transparente reservado para el foco de teclado.
+     * Así no cambia el tamaño al enfocar.
+     */
+	-fx-border-color: transparent;
+	-fx-border-width: 2;
+	-fx-border-insets: 0;
+	-fx-border-radius: 2;
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.70), 6, 0.20, 0, 3);
+}
+
+.historia-retro .boton-duelar {
+	-fx-min-width: 142;
+	-fx-pref-width: 142;
+}
+
+.historia-retro .boton-volver {
+	-fx-min-width: 190;
+	-fx-font-size: 18px;
+}
+
+/* Botón principal para el rival disponible. */
+.historia-retro .rival-siguiente .boton-duelar {
+	-fx-text-fill: #fff6d7;
+	-fx-background-color: #231506, #fff1bd, #8e5e26,
+		linear-gradient(to bottom, #d5a25c 0%, #a87335 48%, #79471f 100%);
+}
+
+/* ==========================================================
+   INTERACCIÓN Y ACCESIBILIDAD
+   ========================================================== */
+.historia-retro .boton-piedra:hover {
+	-fx-text-fill: #ffffff;
+	-fx-background-color: #201707, #ffe6a0, #8a6537,
+		linear-gradient(to bottom, #c9a36b, #82603b);
+	-fx-effect: dropshadow(gaussian, rgba(245, 192, 86, 0.45), 12, 0.25, 0,
+		0);
+}
+
+.historia-retro .rival-siguiente .boton-duelar:hover {
+	-fx-background-color: #231506, #fff7d8, #b98535,
+		linear-gradient(to bottom, #edbe72, #a46c2e);
+}
+
+.historia-retro .boton-piedra:focused {
+	-fx-border-color: #fff0ba;
+}
+
+.historia-retro .boton-piedra:pressed {
+	-fx-background-color: #100d08, #765e3b, #3c2e1b,
+		linear-gradient(to bottom, #594026, #8d6a3d);
+	-fx-effect: innershadow(gaussian, rgba(0, 0, 0, 0.70), 7, 0.25, 0, 3);
+}
+
+.historia-retro .boton-piedra:disabled {
+	-fx-opacity: 1;
+	-fx-cursor: default;
+	-fx-text-fill: #b5b4a7;
+	-fx-background-color: #161816, #73766a, #353c37,
+		linear-gradient(to bottom, #60675d, #3b433d);
+	-fx-border-color: transparent;
+	-fx-effect: none;
+}
+
+/* ==========================================================
+   MENSAJE INFERIOR
+   ========================================================== */
+.historia-retro .historia-mensaje {
+	-fx-font-family: "Verdana";
+	-fx-font-size: 14px;
+	-fx-font-weight: bold;
+	-fx-text-fill: #ffda79;
+	-fx-text-alignment: center;
+	-fx-alignment: center;
+	-fx-line-spacing: 3;
+	-fx-padding: 4 6 2 6;
+	-fx-effect: dropshadow(gaussian, #000000, 4, 0.70, 1, 2);
+}
+
+/* Fondo negro de respaldo. Conserva la imagen configurada. */
+.historia-retro {
+	-fx-background-color: #000000;
+}
+
+/* Sombra negra sobre la imagen, sin tonalidades verdes. */
+.historia-retro .historia-velo {
+	-fx-background-color: radial-gradient(center 50% 42%, radius 85%, rgba(0, 0, 0, 0.15)
+		0%, rgba(0, 0, 0, 0.45) 65%, rgba(0, 0, 0, 0.80) 100%);
+}
+
+/* Panel de carbón con marco dorado. */
+.historia-retro .historia-panel {
+	-fx-background-color: #050505, #92723e, #22201b,
+		linear-gradient(to bottom, rgba(24, 24, 24, 0.90), rgba(3, 3, 3, 0.94));
+	-fx-background-insets: 0, 2, 4, 6;
+	-fx-background-radius: 3, 2, 1, 0;
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.90), 28, 0.30, 0, 10);
+}
+
+/* Descripción en un tono neutro. */
+.historia-retro .historia-descripcion {
+	-fx-text-fill: #ded7c8;
+}
+
+/* Barras de desplazamiento sin verde. */
+.historia-retro .historia-scroll>.corner, .historia-retro .historia-scroll .scroll-bar
+	{
+	-fx-background-color: #080808;
+}
+
+.historia-retro .historia-scroll .scroll-bar .track {
+	-fx-background-color: #171717;
+}

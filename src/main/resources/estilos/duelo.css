@@ -1,0 +1,363 @@
+/*
+ * duelo.css — tema de duelo y cambio de turno.
+ * Imagen opcional: /imagenes/fondo-duelo.jpg.
+ * La raíz conserva un fondo negro si no se incorpora esa imagen.
+ * Los botones comparten el acabado de piedra del menú y modo historia.
+ */
+
+/* Fondo y tipografía. */
+.duelo-retro {
+	-fx-font-family: "Verdana";
+	-fx-font-size: 13px;
+	-fx-background-color: #000000;
+	-fx-background-image: url("../imagenes/fondo-duelo.jpg");
+	-fx-background-repeat: no-repeat;
+	-fx-background-position: center center;
+	-fx-background-size: cover;
+}
+
+.duelo-retro .label {
+	-fx-text-fill: #f4ead4;
+}
+
+.duelo-retro .duelo-velo {
+	-fx-background-color: radial-gradient(center 45% 45%, radius 90%, rgba(0, 0, 0, 0.32)
+		0%, rgba(0, 0, 0, 0.80) 100%);
+}
+
+/* Cambio de turno: fondo independiente que oculta por completo el tablero. */
+.duelo-retro .cambio-panel {
+	-fx-padding: 34;
+	-fx-background-color: #090807, #a18149, #30281c,
+		linear-gradient(to bottom, rgba(23, 23, 23, 0.94), rgba(3, 3, 3, 0.97));
+	-fx-background-insets: 0, 2, 4, 6;
+	-fx-background-radius: 3, 2, 1, 0;
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.85), 24, 0.25, 0, 8);
+}
+
+.duelo-retro .cambio-titulo {
+	-fx-font-family: "Georgia";
+	-fx-font-size: 36px;
+	-fx-font-weight: bold;
+	-fx-text-fill: #ffe3a0;
+	-fx-alignment: center;
+	-fx-text-alignment: center;
+	-fx-effect: dropshadow(gaussian, #000000, 6, 0.75, 2, 3);
+}
+
+.duelo-retro .cambio-aviso {
+	-fx-font-size: 15px;
+	-fx-text-fill: #e6dcc4;
+	-fx-alignment: center;
+	-fx-text-alignment: center;
+	-fx-line-spacing: 4;
+}
+
+/* Tablero: el tamaño de las cartas se ajusta en Java para responder a la ventana. */
+.duelo-retro .duelo-tablero {
+	-fx-padding: 20;
+	-fx-background-color: transparent;
+}
+
+.duelo-retro .duelista-info {
+	-fx-font-size: 14px;
+	-fx-font-weight: bold;
+	-fx-text-fill: #f7e8bd;
+	-fx-alignment: center;
+	-fx-text-alignment: center;
+	-fx-effect: dropshadow(gaussian, #000000, 5, 0.8, 1, 2);
+}
+
+.duelo-retro .duelo-turno {
+	-fx-font-family: "Georgia";
+	-fx-font-size: 19px;
+	-fx-font-weight: bold;
+	-fx-text-fill: #ffe29a;
+	-fx-text-alignment: center;
+	-fx-effect: dropshadow(gaussian, #000000, 5, 0.8, 1, 2);
+}
+
+.duelo-retro .duelo-titulo-mano {
+	-fx-font-size: 12px;
+	-fx-font-weight: bold;
+	-fx-text-fill: #dfc58b;
+	-fx-text-alignment: center;
+}
+
+/* Se conserva el verde oscuro del panel de acciones. */
+.duelo-retro .duelo-acciones {
+	-fx-background-color: #000000;
+	-fx-padding: 18 14 14 14;
+	-fx-border-color: #7d643c;
+	-fx-border-width: 0 0 0 1;
+}
+
+.duelo-retro .duelo-mensaje {
+	-fx-font-size: 13px;
+	-fx-text-fill: #ffdf89;
+	-fx-alignment: center-left;
+	-fx-text-alignment: left;
+}
+
+.duelo-retro .duelo-titulo-registro {
+	-fx-font-size: 13px;
+	-fx-font-weight: bold;
+	-fx-text-fill: #f2ddb0;
+	-fx-alignment: center-left;
+}
+
+.duelo-retro .duelo-registro {
+	-fx-padding: 4 6 8 0;
+}
+
+.duelo-retro .duelo-evento {
+	-fx-font-size: 12px;
+	-fx-text-fill: #e4e7d7;
+	-fx-alignment: top-left;
+	-fx-text-alignment: left;
+}
+
+/* Botones de piedra: contorno, luz exterior, bisel y superficie. */
+.duelo-retro .boton-piedra {
+	-fx-font-family: "Verdana";
+	-fx-font-size: 14px;
+	-fx-font-weight: bold;
+	-fx-text-fill: #fff0cf;
+	-fx-alignment: center;
+	-fx-padding: 12 14;
+	-fx-min-height: 46;
+	-fx-cursor: hand;
+	-fx-background-color: #100e0b, #c4ae80, #51422e,
+		linear-gradient(to bottom, #9e8764 0%, #796144 48%, #55442f 100%);
+	-fx-background-insets: 0, 2, 4, 6;
+	-fx-background-radius: 2, 1, 0, 0;
+	-fx-border-color: transparent;
+	-fx-border-width: 2;
+	-fx-border-radius: 2;
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 7, 0.2, 0, 3);
+}
+
+.duelo-retro .boton-principal {
+	-fx-background-color: #231506, #fff1bd, #8e5e26,
+		linear-gradient(to bottom, #d5a25c, #79471f);
+}
+
+.duelo-retro .boton-piedra:hover {
+	-fx-text-fill: #ffffff;
+	-fx-background-color: #201707, #ffe6a0, #8a6537,
+		linear-gradient(to bottom, #c9a36b, #82603b);
+	-fx-effect: dropshadow(gaussian, rgba(245, 192, 86, 0.45), 12, 0.25, 0,
+		0);
+}
+
+.duelo-retro .boton-piedra:focused {
+	-fx-border-color: #fff0ba;
+}
+
+.duelo-retro .boton-piedra:pressed {
+	-fx-background-color: #100d08, #765e3b, #3c2e1b,
+		linear-gradient(to bottom, #594026, #8d6a3d);
+	-fx-effect: innershadow(gaussian, rgba(0, 0, 0, 0.7), 7, 0.25, 0, 3);
+}
+
+.duelo-retro .boton-piedra:disabled {
+	-fx-opacity: 1;
+	-fx-cursor: default;
+	-fx-text-fill: #b5b4a7;
+	-fx-background-color: #161816, #73766a, #353c37,
+		linear-gradient(to bottom, #60675d, #3b433d);
+	-fx-border-color: transparent;
+	-fx-effect: none;
+}
+
+/* Cartas con ilustraciones mayores y marcos según el tipo. */
+.duelo-retro .carta-duelo {
+	-fx-background-color: linear-gradient(to bottom, #bd985c, #71522e);
+	-fx-background-radius: 3;
+	-fx-border-color: #d3b67b;
+	-fx-border-width: 2;
+	-fx-border-radius: 3;
+	-fx-cursor: hand;
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 8, 0.2, 0, 4);
+}
+
+.duelo-retro .carta-contenido {
+	-fx-padding: 6;
+}
+
+.duelo-retro .carta-nombre {
+	-fx-font-family: "Georgia";
+	-fx-font-size: 12px;
+	-fx-font-weight: bold;
+	-fx-text-fill: #fff7df;
+}
+
+.duelo-retro .carta-ilustracion {
+	-fx-background-color: rgba(0, 0, 0, 0.30);
+	-fx-border-color: rgba(255, 229, 165, 0.45);
+	-fx-border-width: 1;
+}
+
+.duelo-retro .carta-valores {
+	-fx-font-size: 11px;
+	-fx-font-weight: bold;
+	-fx-text-fill: #fff7df;
+}
+
+.duelo-retro .carta-alternativa {
+	-fx-font-size: 11px;
+	-fx-text-fill: #e9dfc4;
+}
+
+.duelo-retro .carta-posicion {
+	-fx-background-color: rgba(23, 53, 82, 0.95);
+	-fx-font-size: 9px;
+	-fx-font-weight: bold;
+	-fx-text-fill: #e2efff;
+	-fx-padding: 2;
+}
+
+.duelo-retro .carta-simbolo {
+	-fx-font-family: "Georgia";
+	-fx-font-size: 22px;
+	-fx-text-fill: #c6ab76;
+}
+
+.duelo-retro .tipo-dragon {
+	-fx-background-color: linear-gradient(to bottom, #a75b45, #622820);
+}
+
+.duelo-retro .tipo-guerrero {
+	-fx-background-color: linear-gradient(to bottom, #b7854b, #69421f);
+}
+
+.duelo-retro .tipo-lanzador-de-conjuros {
+	-fx-background-color: linear-gradient(to bottom, #8c68a9, #432d63);
+}
+
+.duelo-retro .tipo-bestia, .duelo-retro .tipo-bestia-guerrera,
+	.duelo-retro .tipo-bestia-alada {
+	-fx-background-color: linear-gradient(to bottom, #a99a4d, #5d5023);
+}
+
+.duelo-retro .tipo-demonio, .duelo-retro .tipo-zombi {
+	-fx-background-color: linear-gradient(to bottom, #795571, #3f263e);
+}
+
+.duelo-retro .tipo-maquina, .duelo-retro .tipo-roca {
+	-fx-background-color: linear-gradient(to bottom, #8e999d, #45545b);
+}
+
+.duelo-retro .tipo-agua, .duelo-retro .tipo-serpiente-marina {
+	-fx-background-color: linear-gradient(to bottom, #5489a8, #21475e);
+}
+
+.duelo-retro .tipo-planta, .duelo-retro .tipo-insecto {
+	-fx-background-color: linear-gradient(to bottom, #619467, #2e5738);
+}
+
+.duelo-retro .tipo-trueno, .duelo-retro .tipo-pirotecnia {
+	-fx-background-color: linear-gradient(to bottom, #c18742, #87421e);
+}
+
+.duelo-retro .tipo-hada {
+	-fx-background-color: linear-gradient(to bottom, #bd7f9e, #713f61);
+}
+
+.duelo-retro .tipo-dinosaurio {
+	-fx-background-color: linear-gradient(to bottom, #9d886a, #5c4836);
+}
+
+.duelo-retro .tipo-bestia-divina {
+	-fx-background-color: linear-gradient(to bottom, #d8b34e, #987020);
+}
+
+/* Estados de carta: el controlador decide cuáles activar. */
+.duelo-retro .carta-duelo:poderosa {
+	-fx-background-color: linear-gradient(to bottom right, #526371 0%, #b9d5d7 27%, #d9c6e5 52%,
+		#a4bdd8 75%, #566a79 100%);
+	-fx-border-color: #eee7ff;
+}
+
+.duelo-retro .carta-duelo:poderosa .carta-nombre, .duelo-retro .carta-duelo:poderosa .carta-valores
+	{
+	-fx-text-fill: #14202d;
+}
+
+.duelo-retro .carta-duelo:vacia {
+	-fx-background-color: rgba(0, 0, 0, 0.30);
+	-fx-border-color: #9c895c;
+	-fx-border-style: segments(7, 5);
+	-fx-effect: none;
+}
+
+.duelo-retro .carta-duelo:reverso {
+	-fx-background-color: #170f09, #a47a3c,
+		radial-gradient(center 50% 50%, radius 75%, #6b3b1a, #21120d);
+	-fx-background-insets: 0, 3, 6;
+}
+
+.duelo-retro .carta-duelo:oculta .carta-contenido {
+	-fx-opacity: 0.75;
+}
+
+.duelo-retro .carta-duelo:gastada .carta-contenido {
+	-fx-opacity: 0.55;
+}
+
+.duelo-retro .carta-duelo:hover {
+	-fx-effect: dropshadow(gaussian, rgba(255, 219, 135, 0.45), 10, 0.20, 0,
+		0);
+}
+
+.duelo-retro .carta-duelo:objetivo {
+	-fx-border-color: #ff8b74;
+	-fx-border-width: 3;
+}
+
+.duelo-retro .carta-duelo:seleccionada {
+	-fx-border-color: #ffe190;
+	-fx-border-width: 4;
+	-fx-effect: dropshadow(gaussian, rgba(255, 204, 86, 0.7), 15, 0.3, 0, 0);
+}
+
+/* Desplazamiento transparente: deja ver el fondo y no tapa el registro. */
+.duelo-retro .duelo-scroll, .duelo-retro .duelo-scroll>.viewport {
+	-fx-background-color: transparent;
+}
+
+.duelo-retro .duelo-scroll {
+	-fx-background-insets: 0;
+	-fx-padding: 0;
+	-fx-border-width: 0;
+}
+
+.duelo-retro .duelo-scroll>.corner, .duelo-retro .duelo-scroll .scroll-bar
+	{
+	-fx-background-color: #102219;
+}
+
+.duelo-retro .duelo-scroll .scroll-bar .track {
+	-fx-background-color: #152b20;
+}
+
+.duelo-retro .duelo-scroll .scroll-bar .thumb {
+	-fx-background-color: #8d754b;
+	-fx-background-radius: 2;
+}
+
+.duelo-retro .duelo-scroll .scroll-bar .increment-button, .duelo-retro .duelo-scroll .scroll-bar .decrement-button
+	{
+	-fx-background-color: #152b20;
+}
+
+.duelo-retro .duelo-scroll .scroll-bar .increment-arrow, .duelo-retro .duelo-scroll .scroll-bar .decrement-arrow
+	{
+	-fx-background-color: #ddc492;
+}
+
+.duelo-retro .duelo-scroll>.corner, .duelo-retro .duelo-scroll .scroll-bar,
+	.duelo-retro .duelo-scroll .scroll-bar .track, .duelo-retro .duelo-scroll .scroll-bar .increment-button,
+	.duelo-retro .duelo-scroll .scroll-bar .decrement-button {
+	-fx-background-color: #000000;
+}
